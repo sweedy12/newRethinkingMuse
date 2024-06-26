@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1>interconnecting_2000_None_leaf_min_-5_max_-1_interentail_0.8</h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1>interconnecting_2000_None_leaf_min_-5_max_-1_interentail_0.8</h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "lemonchiffon", "font": {"color": "black"}, "id": 338, "label": 338, "shape": "dot", "title": "to make a non-thrombogenic object"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 250, "label": 250, "shape": "dot", "title": "to provide a method for mixing a solution"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 316, "label": 316, "shape": "dot", "title": "to mix materials"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 222, "label": 222, "shape": "dot", "title": "to provide a composition containing an inorganic filler material"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 259, "label": 259, "shape": "dot", "title": "to provide a method of making a mold"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 328, "label": 328, "shape": "dot", "title": "to provide a press for forming a moldable material"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 213, "label": 213, "shape": "dot", "title": "to provide a method for casting concrete"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 8, "label": 8, "shape": "dot", "title": "to provide a method for removing a foreign object from the eye"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 149, "label": 149, "shape": "dot", "title": "to provide a method for cloaking objects"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 293, "label": 293, "shape": "dot", "title": "to provide a cover with reinforced edge"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 72, "label": 72, "shape": "dot", "title": "to provide a method for repairing an articular surface"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 150, "label": 150, "shape": "dot", "title": "to provide a vehicle-body front structure"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 2, "label": 2, "shape": "dot", "title": "to provide a device for holding a head in a fixed position"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 211, "label": 211, "shape": "dot", "title": "to break down strong abrasive materials"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 247, "label": 247, "shape": "dot", "title": "to provide a cutting element for processing rocks, metal or the like"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 339, "label": 339, "shape": "dot", "title": "to provide a panel with a metallic core"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 198, "label": 198, "shape": "dot", "title": "to provide a method for cooling metal turnings"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 306, "label": 306, "shape": "dot", "title": "to provide a method of marking hot material"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 187, "label": 187, "shape": "dot", "title": "to provide a transport system"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 395, "label": 395, "shape": "dot", "title": "to provide a method of manufacturing gear forms"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 70, "label": 70, "shape": "dot", "title": "to provide a device for attaching a device to a device"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 96, "label": 96, "shape": "dot", "title": "to provide a device for assisting a user in standing"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 97, "label": 97, "shape": "dot", "title": "to provide a body weight support system"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 153, "label": 153, "shape": "dot", "title": "to provide a device for mounting accessories to a vehicle"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 431, "label": 431, "shape": "dot", "title": "to provide a homogenizing device"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 343, "label": 343, "shape": "dot", "title": "to provide a collecting piece"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 111, "label": 111, "shape": "dot", "title": "to provide a building block toy set"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 118, "label": 118, "shape": "dot", "title": "to provide a method for manufacturing a wire"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 173, "label": 173, "shape": "dot", "title": "to provide a composite structure assembly"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 140, "label": 140, "shape": "dot", "title": "to provide a method for making a 3D printed object"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 208, "label": 208, "shape": "dot", "title": "to provide a planning aid"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 184, "label": 184, "shape": "dot", "title": "to provide a storage vessel"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 24, "label": 24, "shape": "dot", "title": "to provide a method for controlling the flow of a fluid"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 336, "label": 336, "shape": "dot", "title": "to provide a container for holding a liquid"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 166, "label": 166, "shape": "dot", "title": "to provide a method of changing the temperature of a liquid"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 176, "label": 176, "shape": "dot", "title": "to remove materials from a body cavity"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 86, "label": 86, "shape": "dot", "title": "to provide a method of purifying air"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 77, "label": 77, "shape": "dot", "title": "to provide a method for operating a floor-cleaning device"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 314, "label": 314, "shape": "dot", "title": "to provide a window cleaning implement"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 151, "label": 151, "shape": "dot", "title": "to provide a device to remove polluting components from waste liquids"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 10, "label": 10, "shape": "dot", "title": "to provide a method and system for exhaust aftertreatment"}, {"color": "black", "font": {"color": "black"}, "id": 123, "label": 123, "shape": "dot", "title": "to provide a method for wireless communication"}, {"color": "black", "font": {"color": "black"}, "id": 12, "label": 12, "shape": "dot", "title": "to provide a control device"}, {"color": "black", "font": {"color": "black"}, "id": 58, "label": 58, "shape": "dot", "title": "to provide a vehicle control apparatus and a control method thereof"}, {"color": "black", "font": {"color": "black"}, "id": 45, "label": 45, "shape": "dot", "title": "to provide a transmission with a controller"}, {"color": "black", "font": {"color": "black"}, "id": 114, "label": 114, "shape": "dot", "title": "to provide a multi-function apparatus"}, {"color": "black", "font": {"color": "black"}, "id": 88, "label": 88, "shape": "dot", "title": "to provide a storage element"}, {"color": "black", "font": {"color": "black"}, "id": 128, "label": 128, "shape": "dot", "title": "to provide a method of making a device"}, {"color": "black", "font": {"color": "black"}, "id": 352, "label": 352, "shape": "dot", "title": "to provide a device for cooling"}, {"color": "thistle", "font": {"color": "black"}, "id": 101, "label": 101, "shape": "dot", "title": "to provide a method of treating a patient with a condition characterized by a deficiency of a protein"}, {"color": "thistle", "font": {"color": "black"}, "id": 52, "label": 52, "shape": "dot", "title": "to provide a medical solution packaging assembly"}, {"color": "thistle", "font": {"color": "black"}, "id": 43, "label": 43, "shape": "dot", "title": "to provide a method of manufacturing a medical device"}, {"color": "thistle", "font": {"color": "black"}, "id": 4, "label": 4, "shape": "dot", "title": "to provide a method for the preparation of a pharmaceutical composition"}, {"color": "thistle", "font": {"color": "black"}, "id": 5, "label": 5, "shape": "dot", "title": "to detect a test substance"}, {"color": "thistle", "font": {"color": "black"}, "id": 22, "label": 22, "shape": "dot", "title": "to monitor drug dosage"}, {"color": "thistle", "font": {"color": "black"}, "id": 39, "label": 39, "shape": "dot", "title": "to provide a prosthetic device"}, {"color": "thistle", "font": {"color": "black"}, "id": 49, "label": 49, "shape": "dot", "title": "to provide a device for delivering an active substance to the eye"}, {"color": "thistle", "font": {"color": "black"}, "id": 103, "label": 103, "shape": "dot", "title": "to provide a method of treating a pulmonary disease or condition"}, {"color": "thistle", "font": {"color": "black"}, "id": 18, "label": 18, "shape": "dot", "title": "to provide a method for determining patient suitability for a surgical procedure"}, {"color": "thistle", "font": {"color": "black"}, "id": 89, "label": 89, "shape": "dot", "title": "to provide a method for providing air/oxygen to a patient"}, {"color": "thistle", "font": {"color": "black"}, "id": 87, "label": 87, "shape": "dot", "title": "to provide a nasal delivery device"}, {"color": "thistle", "font": {"color": "black"}, "id": 67, "label": 67, "shape": "dot", "title": "to provide a method for treating an inflammatory condition"}, {"color": "thistle", "font": {"color": "black"}, "id": 107, "label": 107, "shape": "dot", "title": "to provide a method for treating bacterial infections"}, {"color": "thistle", "font": {"color": "black"}, "id": 110, "label": 110, "shape": "dot", "title": "to provide a method for treating or preventing diseases which are based on inadequate performance of the pancreas, the bile and/or the liver"}, {"color": "thistle", "font": {"color": "black"}, "id": 102, "label": 102, "shape": "dot", "title": "to provide a method for treating obesity"}, {"color": "thistle", "font": {"color": "black"}, "id": 50, "label": 50, "shape": "dot", "title": "to provide a device for the treatment of incontinence"}, {"color": "thistle", "font": {"color": "black"}, "id": 59, "label": 59, "shape": "dot", "title": "to provide a method for the treatment of preterm labor"}, {"color": "thistle", "font": {"color": "black"}, "id": 115, "label": 115, "shape": "dot", "title": "to provide a pet sanitary facility"}, {"color": "thistle", "font": {"color": "black"}, "id": 113, "label": 113, "shape": "dot", "title": "to provide a process for immobilizing biological material"}, {"color": "thistle", "font": {"color": "black"}, "id": 27, "label": 27, "shape": "dot", "title": "to provide a device for dispensing medical adhesive"}, {"color": "thistle", "font": {"color": "black"}, "id": 55, "label": 55, "shape": "dot", "title": "to provide a method of reducing the risk of medication-related overdose, death, or other injury associated with inappropriate consumption of alcohol in conjunction with prescription opioid analgesics"}, {"color": "thistle", "font": {"color": "black"}, "id": 57, "label": 57, "shape": "dot", "title": "to provide a method for treating sciatic pain"}, {"color": "thistle", "font": {"color": "black"}, "id": 75, "label": 75, "shape": "dot", "title": "to provide a method of treating a neurological or psychiatric condition in a human or animal subject"}, {"color": "thistle", "font": {"color": "black"}, "id": 148, "label": 148, "shape": "dot", "title": "to provide a method of treating peripheral vascular disorders"}, {"color": "thistle", "font": {"color": "black"}, "id": 154, "label": 154, "shape": "dot", "title": "to provide a method of treating multiple sclerosis"}, {"color": "thistle", "font": {"color": "black"}, "id": 62, "label": 62, "shape": "dot", "title": "to provide a method for treating senescence-associated diseases and disorders"}]);
+                  edges = new vis.DataSet([{"arrowStrikethrough": false, "arrows": "to", "from": 338, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 328, "to": 395}, {"arrowStrikethrough": false, "arrows": "to", "from": 150, "to": 187}, {"arrowStrikethrough": false, "arrows": "to", "from": 150, "to": 97}, {"arrowStrikethrough": false, "arrows": "to", "from": 150, "to": 114}, {"arrowStrikethrough": false, "arrows": "to", "from": 2, "to": 39}, {"arrowStrikethrough": false, "arrows": "to", "from": 247, "to": 395}, {"arrowStrikethrough": false, "arrows": "to", "from": 247, "to": 114}, {"arrowStrikethrough": false, "arrows": "to", "from": 198, "to": 352}, {"arrowStrikethrough": false, "arrows": "to", "from": 306, "to": 5}, {"arrowStrikethrough": false, "arrows": "to", "from": 187, "to": 150}, {"arrowStrikethrough": false, "arrows": "to", "from": 187, "to": 58}, {"arrowStrikethrough": false, "arrows": "to", "from": 70, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 96, "to": 39}, {"arrowStrikethrough": false, "arrows": "to", "from": 97, "to": 39}, {"arrowStrikethrough": false, "arrows": "to", "from": 316, "to": 114}, {"arrowStrikethrough": false, "arrows": "to", "from": 153, "to": 150}, {"arrowStrikethrough": false, "arrows": "to", "from": 153, "to": 58}, {"arrowStrikethrough": false, "arrows": "to", "from": 153, "to": 114}, {"arrowStrikethrough": false, "arrows": "to", "from": 431, "to": 338}, {"arrowStrikethrough": false, "arrows": "to", "from": 111, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 118, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 173, "to": 114}, {"arrowStrikethrough": false, "arrows": "to", "from": 140, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 184, "to": 88}, {"arrowStrikethrough": false, "arrows": "to", "from": 24, "to": 12}, {"arrowStrikethrough": false, "arrows": "to", "from": 336, "to": 88}, {"arrowStrikethrough": false, "arrows": "to", "from": 166, "to": 12}, {"arrowStrikethrough": false, "arrows": "to", "from": 77, "to": 12}, {"arrowStrikethrough": false, "arrows": "to", "from": 314, "to": 72}, {"arrowStrikethrough": false, "arrows": "to", "from": 10, "to": 50}, {"arrowStrikethrough": false, "arrows": "to", "from": 123, "to": 187}, {"arrowStrikethrough": false, "arrows": "to", "from": 58, "to": 187}, {"arrowStrikethrough": false, "arrows": "to", "from": 45, "to": 187}, {"arrowStrikethrough": false, "arrows": "to", "from": 114, "to": 173}, {"arrowStrikethrough": false, "arrows": "to", "from": 88, "to": 184}, {"arrowStrikethrough": false, "arrows": "to", "from": 52, "to": 395}, {"arrowStrikethrough": false, "arrows": "to", "from": 52, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 43, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 96, "to": 336}, {"arrowStrikethrough": false, "arrows": "to", "from": 22, "to": 12}, {"arrowStrikethrough": false, "arrows": "to", "from": 86, "to": 187}, {"arrowStrikethrough": false, "arrows": "to", "from": 39, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 87, "to": 187}, {"arrowStrikethrough": false, "arrows": "to", "from": 87, "to": 24}, {"arrowStrikethrough": false, "arrows": "to", "from": 87, "to": 336}, {"arrowStrikethrough": false, "arrows": "to", "from": 87, "to": 86}, {"arrowStrikethrough": false, "arrows": "to", "from": 87, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 110, "to": 114}, {"arrowStrikethrough": false, "arrows": "to", "from": 27, "to": 336}, {"arrowStrikethrough": false, "arrows": "to", "from": 27, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 55, "to": 12}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1>interconnecting_2000_0.8_leaf_min_-5_max_-1_interentail_0.8</h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1>interconnecting_2000_0.8_leaf_min_-5_max_-1_interentail_0.8</h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "lawngreen", "font": {"color": "black"}, "id": 123, "label": 123, "shape": "dot", "title": "to provide a method of manufacturing a product"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 3, "label": 3, "shape": "dot", "title": "to provide a sealing structure"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 116, "label": 116, "shape": "dot", "title": "to provide a coating system"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 165, "label": 165, "shape": "dot", "title": "to provide a process for producing structured coatings"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 262, "label": 262, "shape": "dot", "title": "to provide a method of making a mold"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 252, "label": 252, "shape": "dot", "title": "to provide a method for mixing a solution"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 315, "label": 315, "shape": "dot", "title": "to mix materials"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 137, "label": 137, "shape": "dot", "title": "to provide a multilayer structure"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 295, "label": 295, "shape": "dot", "title": "to describe the synthesis of a compound"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 15, "label": 15, "shape": "dot", "title": "to provide a control device"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 128, "label": 128, "shape": "dot", "title": "to provide a device for holding a device"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 323, "label": 323, "shape": "dot", "title": "to provide a material handling device"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 109, "label": 109, "shape": "dot", "title": "to provide a multi-function apparatus"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 198, "label": 198, "shape": "dot", "title": "to provide a device for mounting accessories to a vehicle"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 56, "label": 56, "shape": "dot", "title": "to provide a method for controlling a vehicle"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 283, "label": 283, "shape": "dot", "title": "to provide a bearing arrangement for motor support"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 305, "label": 305, "shape": "dot", "title": "to provide a device for outputting information"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 85, "label": 85, "shape": "dot", "title": "to provide a storage element"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 110, "label": 110, "shape": "dot", "title": "to provide a device for visual inspection"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 285, "label": 285, "shape": "dot", "title": "to provide a method for aligning and/or spacing an eye examining instrument"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 27, "label": 27, "shape": "dot", "title": "to provide a light fixture"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 112, "label": 112, "shape": "dot", "title": "to provide a method for measuring light"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 143, "label": 143, "shape": "dot", "title": "to provide a device for occlusive devices"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 293, "label": 293, "shape": "dot", "title": "to provide a honing device"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 182, "label": 182, "shape": "dot", "title": "to provide a device for dissolving solid in a liquid"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 181, "label": 181, "shape": "dot", "title": "to remove materials from a body cavity"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 232, "label": 232, "shape": "dot", "title": "to provide a method for diluting a liquid"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 99, "label": 99, "shape": "dot", "title": "to provide a method for removing a substance from a liquid"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 147, "label": 147, "shape": "dot", "title": "to provide a system for storing a liquid"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 161, "label": 161, "shape": "dot", "title": "to provide a method for retarding water evaporation"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 200, "label": 200, "shape": "dot", "title": "to provide a purification installation"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 84, "label": 84, "shape": "dot", "title": "to provide a cleaning apparatus"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 24, "label": 24, "shape": "dot", "title": "to provide a method for controlling the flow of a fluid"}, {"color": "black", "font": {"color": "black"}, "id": 245, "label": 245, "shape": "dot", "title": "to provide a storage vessel"}, {"color": "black", "font": {"color": "black"}, "id": 37, "label": 37, "shape": "dot", "title": "to provide a system for transporting a product"}, {"color": "black", "font": {"color": "black"}, "id": 403, "label": 403, "shape": "dot", "title": "to provide a method of manufacturing gear forms"}, {"color": "black", "font": {"color": "black"}, "id": 224, "label": 224, "shape": "dot", "title": "to provide a food holder"}, {"color": "black", "font": {"color": "black"}, "id": 273, "label": 273, "shape": "dot", "title": "to provide a container for fast food"}, {"color": "black", "font": {"color": "black"}, "id": 178, "label": 178, "shape": "dot", "title": "to provide a method for making a package"}, {"color": "black", "font": {"color": "black"}, "id": 146, "label": 146, "shape": "dot", "title": "to provide a transaction instrument"}, {"color": "black", "font": {"color": "black"}, "id": 204, "label": 204, "shape": "dot", "title": "to provide a lifting system control device"}, {"color": "black", "font": {"color": "black"}, "id": 184, "label": 184, "shape": "dot", "title": "to provide a system and method for item management"}, {"color": "thistle", "font": {"color": "black"}, "id": 1, "label": 1, "shape": "dot", "title": "to provide a medical device"}, {"color": "thistle", "font": {"color": "black"}, "id": 62, "label": 62, "shape": "dot", "title": "to provide a method of treating a disease or disorder"}, {"color": "thistle", "font": {"color": "black"}, "id": 9, "label": 9, "shape": "dot", "title": "to provide a method for scanning a patient"}, {"color": "thistle", "font": {"color": "black"}, "id": 47, "label": 47, "shape": "dot", "title": "to provide a method of manufacturing a medical device"}, {"color": "thistle", "font": {"color": "black"}, "id": 29, "label": 29, "shape": "dot", "title": "to provide a device for dispensing medical adhesive"}, {"color": "thistle", "font": {"color": "black"}, "id": 106, "label": 106, "shape": "dot", "title": "to provide a device for administering a medication"}, {"color": "thistle", "font": {"color": "black"}, "id": 94, "label": 94, "shape": "dot", "title": "to provide a method for delivering a medical agent to a treatment site"}, {"color": "thistle", "font": {"color": "black"}, "id": 53, "label": 53, "shape": "dot", "title": "to provide a device for delivering an active substance to the eye"}, {"color": "thistle", "font": {"color": "black"}, "id": 142, "label": 142, "shape": "dot", "title": "to provide a dosage device"}, {"color": "thistle", "font": {"color": "black"}, "id": 92, "label": 92, "shape": "dot", "title": "to provide a device for dispensing a dose of a medicament"}, {"color": "thistle", "font": {"color": "black"}, "id": 42, "label": 42, "shape": "dot", "title": "to provide a prosthetic device"}, {"color": "thistle", "font": {"color": "black"}, "id": 6, "label": 6, "shape": "dot", "title": "to detect a test substance"}]);
+                  edges = new vis.DataSet([{"arrowStrikethrough": false, "arrows": "to", "from": 123, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 116, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 116, "to": 293}, {"arrowStrikethrough": false, "arrows": "to", "from": 165, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 165, "to": 293}, {"arrowStrikethrough": false, "arrows": "to", "from": 262, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 262, "to": 293}, {"arrowStrikethrough": false, "arrows": "to", "from": 315, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 137, "to": 109}, {"arrowStrikethrough": false, "arrows": "to", "from": 128, "to": 204}, {"arrowStrikethrough": false, "arrows": "to", "from": 323, "to": 184}, {"arrowStrikethrough": false, "arrows": "to", "from": 109, "to": 137}, {"arrowStrikethrough": false, "arrows": "to", "from": 85, "to": 245}, {"arrowStrikethrough": false, "arrows": "to", "from": 262, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 285, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 27, "to": 53}, {"arrowStrikethrough": false, "arrows": "to", "from": 181, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 165, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 99, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 147, "to": 85}, {"arrowStrikethrough": false, "arrows": "to", "from": 147, "to": 245}, {"arrowStrikethrough": false, "arrows": "to", "from": 84, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 84, "to": 293}, {"arrowStrikethrough": false, "arrows": "to", "from": 285, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 24, "to": 15}, {"arrowStrikethrough": false, "arrows": "to", "from": 245, "to": 85}, {"arrowStrikethrough": false, "arrows": "to", "from": 37, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 37, "to": 109}, {"arrowStrikethrough": false, "arrows": "to", "from": 403, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 224, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 224, "to": 85}, {"arrowStrikethrough": false, "arrows": "to", "from": 273, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 273, "to": 85}, {"arrowStrikethrough": false, "arrows": "to", "from": 178, "to": 15}, {"arrowStrikethrough": false, "arrows": "to", "from": 178, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 178, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 204, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 184, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 47, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 47, "to": 293}, {"arrowStrikethrough": false, "arrows": "to", "from": 56, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 56, "to": 403}, {"arrowStrikethrough": false, "arrows": "to", "from": 56, "to": 178}, {"arrowStrikethrough": false, "arrows": "to", "from": 29, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 29, "to": 37}, {"arrowStrikethrough": false, "arrows": "to", "from": 29, "to": 146}, {"arrowStrikethrough": false, "arrows": "to", "from": 106, "to": 37}, {"arrowStrikethrough": false, "arrows": "to", "from": 106, "to": 146}, {"arrowStrikethrough": false, "arrows": "to", "from": 94, "to": 37}, {"arrowStrikethrough": false, "arrows": "to", "from": 94, "to": 146}, {"arrowStrikethrough": false, "arrows": "to", "from": 53, "to": 323}, {"arrowStrikethrough": false, "arrows": "to", "from": 53, "to": 110}, {"arrowStrikethrough": false, "arrows": "to", "from": 53, "to": 37}, {"arrowStrikethrough": false, "arrows": "to", "from": 53, "to": 146}, {"arrowStrikethrough": false, "arrows": "to", "from": 92, "to": 37}, {"arrowStrikethrough": false, "arrows": "to", "from": 92, "to": 146}, {"arrowStrikethrough": false, "arrows": "to", "from": 161, "to": 143}, {"arrowStrikethrough": false, "arrows": "to", "from": 161, "to": 181}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+Predicted edges which aren't true:
+1. a method for removing dust from a surface----> a method to effectively remove dirt
+2. a solution for washing glass surfaces----> a window washing device
+3. a method for keeping the condition of a glass----> a window washing device
+4. a method for keeping the condition of a glass----> a solution for washing glass surfaces
+5. a method for keeping the condition of a glass----> an apparatus for cleaning an object
+6. a method for polishing glass objects----> a window cleaning method
+7. an substance for removing stains from an object----> a method to effectively remove dirt
+8. a method to effectively remove dirt----> an apparatus for dust removal
+9. a method to effectively remove dirt----> an substance for removing stains from an object
+10. an apparatus for increasing the temperature of a space----> a method to heat a room efficiently
+11. a device for cooling down high-temperature devices----> an apparatus for lowering temperature of a room 
+12. a liquid-based solution for cooling a GPU----> a device for cooling a room
+
+
+GT edges which weren't found:
+1. a window washing device----> an apparatus for dust removal
+2. a solution for washing glass surfaces----> an apparatus for maintaining a glass
+3. a solution for washing glass surfaces----> a method for polishing glass objects
+4. a method for enhancing food flavor----> a cooking apparatus 
+5. an apparatus for increasing the temperature of a space----> a temperature control device
+6. a method to heat a room efficiently----> a temperature control device
+7. a method to increase the heat in an oven----> a temperature control device
+8. a solution for efficiently cooling down inner parts of a computer----> a device for cooling down high-temperature devices
+9. a liquid-based solution for cooling a GPU----> a temperature control device
+10. a liquid-based solution for cooling a GPU----> a device for cooling down high-temperature devices
+
+
+
+The number of GT edges is 28
+The number of predicted edges is 30
+recall is 0.6428571428571429
+precision is 0.6

@@ -1,0 +1,34 @@
+Predicted edges which aren't true:
+1. a window washing device----> a substance for removing stains from an object
+2. a solution for washing glass surfaces----> a window cleaning device
+3. a method for keeping the condition of a glass----> a window cleaning method
+4. an apparatus for maintaining a glass----> a solution for washing glass surfaces
+5. an apparatus for maintaining a glass----> an apparatus for cleaning an object
+6. a method for polishing glass objects----> a window cleaning device
+7. a method for polishing glass objects----> a solution for washing glass surfaces
+8. a substance for enhancing food flavor ----> a method for sweetening food
+9. to effectively remove dirt----> a method for removing dust from a surface
+10. to effectively remove dirt----> a substance for removing stains from an object
+11. a liquid-based solution for cooling a GPU----> an apparatus for cleaning an object
+
+
+GT edges which weren't found:
+1. a window cleaning method----> an apparatus for dust removal
+2. a solution for washing glass surfaces----> an apparatus for maintaining a glass
+3. a solution for washing glass surfaces----> a method for polishing glass objects
+4. an apparatus for making food sweeter----> a cooking apparatus 
+5. a method for enhancing food flavor----> a device used for cooking 
+6. to effectively remove dirt----> an apparatus for cleaning an object
+7. to heat a room efficiently----> an apparatus for increasing the temperature of a space
+8. to heat a room efficiently----> a temperature control device
+9. a method to increase the heat in an oven----> a temperature control device
+10. a solution for efficiently cooling down inner parts of a computer----> a device for cooling down high-temperature devices
+11. a liquid-based solution for cooling a GPU----> a temperature control device
+12. a liquid-based solution for cooling a GPU----> a device for cooling down high-temperature devices
+
+
+
+The number of GT edges is 28
+The number of predicted edges is 27
+recall is 0.5714285714285714
+precision is 0.5925925925925926

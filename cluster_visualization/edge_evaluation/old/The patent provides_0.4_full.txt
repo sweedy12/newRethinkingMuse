@@ -1,0 +1,29 @@
+Predicted edges which aren't true:
+1. an apparatus for dust removal----> a method to effectively remove dirt
+2. a method for keeping the condition of a glass----> a window cleaning method
+3. a method to effectively remove dirt----> a method for removing dust from a surface
+4. an apparatus for increasing the temperature of a space----> a method to heat a room efficiently
+
+
+GT edges which weren't found:
+1. a window washing device----> an apparatus for dust removal
+2. a window cleaning method----> a method for polishing glass objects
+3. a solution for washing glass surfaces----> a method for keeping the condition of a glass
+4. a solution for washing glass surfaces----> a method for polishing glass objects
+5. an apparatus for making food sweeter----> a cooking apparatus 
+6. a substance for enhancing food flavor ----> a device used for cooking 
+7. an substance for removing stains from an object----> an apparatus for cleaning an object
+8. an apparatus for increasing the temperature of a space----> a temperature control device
+9. a method to heat a room efficiently----> a temperature control device
+10. a method to increase the heat in an oven----> a temperature control device
+11. a solution for efficiently cooling down inner parts of a computer----> a device for cooling down high-temperature devices
+12. a solution for efficiently cooling down inner parts of a computer----> a temperature control device
+13. a liquid-based solution for cooling a GPU----> a temperature control device
+14. a liquid-based solution for cooling a GPU----> a device for cooling down high-temperature devices
+
+
+
+The number of GT edges is 28
+The number of predicted edges is 18
+recall is 0.5
+precision is 0.7777777777777778

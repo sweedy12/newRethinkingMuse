@@ -1,0 +1,294 @@
+1. Cluster represented by to provide a method of manufacturing a product, from loose cluster 3
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ _______________________________________________________________________
+
+2. Cluster represented by to provide a sealing structure, from loose cluster 3
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+3. Cluster represented by to provide a coating composition and method, from loose cluster 3
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ 2. Cluster represented by to provide a honing device,from loose cluster 2
+ _______________________________________________________________________
+
+4. Cluster represented by to provide a process for producing structured coatings, from loose cluster 3
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ 2. Cluster represented by to provide a honing device,from loose cluster 2
+ _______________________________________________________________________
+
+5. Cluster represented by to provide a method of making a mold, from loose cluster 3
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ 2. Cluster represented by to provide a honing device,from loose cluster 2
+ _______________________________________________________________________
+
+6. Cluster represented by to provide a method for mixing a solution, from loose cluster 3
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+7. Cluster represented by to mix materials, from loose cluster 3
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ _______________________________________________________________________
+
+8. Cluster represented by to provide a multilayer structure, from loose cluster 3
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a multi-function apparatus,from loose cluster 2
+ _______________________________________________________________________
+
+9. Cluster represented by to describe the synthesis of a compound, from loose cluster 3
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+10. Cluster represented by to provide a control device, from loose cluster 2
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+11. Cluster represented by to provide a device for holding a device, from loose cluster 2
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a lifting device,from loose cluster 0
+ _______________________________________________________________________
+
+12. Cluster represented by to provide a material handling device, from loose cluster 2
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a system and method for item management,from loose cluster 0
+ _______________________________________________________________________
+
+13. Cluster represented by to provide a multi-function apparatus, from loose cluster 2
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a multilayer structure,from loose cluster 3
+ _______________________________________________________________________
+
+14. Cluster represented by to provide a device for mounting accessories to a vehicle, from loose cluster 2
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+15. Cluster represented by to provide a method for operating a vehicle, from loose cluster 2
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+16. Cluster represented by to provide a bearing arrangement for motor support, from loose cluster 2
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+17. Cluster represented by to provide a device for outputting information, from loose cluster 2
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+18. Cluster represented by to provide a storage element, from loose cluster 2
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a storage vessel,from loose cluster 0
+ _______________________________________________________________________
+
+19. Cluster represented by to provide a method of and apparatus for examination of visual fields, from loose cluster 2
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+20. Cluster represented by to provide a method for examining the eye, from loose cluster 2
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a method of treating a patient with a medical device,from loose cluster 1
+ _______________________________________________________________________
+
+21. Cluster represented by to provide a method for aligning and/or spacing an eye examining instrument, from loose cluster 2
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a medical device,from loose cluster 1
+ _______________________________________________________________________
+
+22. Cluster represented by to provide a light fixture, from loose cluster 2
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a device for delivering an active substance to the eye,from loose cluster 1
+ _______________________________________________________________________
+
+23. Cluster represented by to provide a method for measuring light, from loose cluster 2
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+24. Cluster represented by to provide a device for occlusive devices, from loose cluster 2
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+25. Cluster represented by to provide a honing device, from loose cluster 2
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+26. Cluster represented by to provide a method for separating a liquid from a solid, from loose cluster 4
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+27. Cluster represented by to remove materials from a body cavity, from loose cluster 4
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ _______________________________________________________________________
+
+28. Cluster represented by to provide a method for diluting a liquid, from loose cluster 4
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+29. Cluster represented by to provide a method for sterilizing liquids, from loose cluster 4
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ _______________________________________________________________________
+
+30. Cluster represented by to provide a method for removing a substance from a liquid, from loose cluster 4
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ _______________________________________________________________________
+
+31. Cluster represented by to provide a method of storing liquid in a subterranean storage tank, from loose cluster 4
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a storage element,from loose cluster 2
+ 2. Cluster represented by to provide a storage vessel,from loose cluster 0
+ _______________________________________________________________________
+
+32. Cluster represented by to provide a method for retarding water evaporation, from loose cluster 4
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+33. Cluster represented by to provide a purification installation, from loose cluster 4
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+34. Cluster represented by to provide a cleaning apparatus, from loose cluster 4
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ 2. Cluster represented by to provide a honing device,from loose cluster 2
+ _______________________________________________________________________
+
+35. Cluster represented by to provide a device for cooling, from loose cluster 4
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ _______________________________________________________________________
+
+36. Cluster represented by to provide a method for controlling the flow of a fluid, from loose cluster 4
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a control device,from loose cluster 2
+ _______________________________________________________________________
+
+37. Cluster represented by to provide a storage vessel, from loose cluster 0
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a storage element,from loose cluster 2
+ _______________________________________________________________________
+
+38. Cluster represented by to provide a system for transporting a product, from loose cluster 0
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a device for holding a device,from loose cluster 2
+ 2. Cluster represented by to provide a multi-function apparatus,from loose cluster 2
+ _______________________________________________________________________
+
+39. Cluster represented by to provide a method of manufacturing gear forms, from loose cluster 0
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ _______________________________________________________________________
+
+40. Cluster represented by to provide a food holder, from loose cluster 0
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ 2. Cluster represented by to provide a storage element,from loose cluster 2
+ _______________________________________________________________________
+
+41. Cluster represented by to provide a container for food, from loose cluster 0
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ 2. Cluster represented by to provide a storage element,from loose cluster 2
+ _______________________________________________________________________
+
+42. Cluster represented by to provide a handle for a package, from loose cluster 0
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a control device,from loose cluster 2
+ 2. Cluster represented by to provide a device for holding a device,from loose cluster 2
+ 3. Cluster represented by to provide a material handling device,from loose cluster 2
+ _______________________________________________________________________
+
+43. Cluster represented by to provide a transaction instrument, from loose cluster 0
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+44. Cluster represented by to provide a lifting device, from loose cluster 0
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ _______________________________________________________________________
+
+45. Cluster represented by to provide a system and method for item management, from loose cluster 0
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ _______________________________________________________________________
+
+46. Cluster represented by to provide a method of treating a patient with a medical device, from loose cluster 1
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+47. Cluster represented by to provide a method of treating a patient with a disease or condition, from loose cluster 1
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+48. Cluster represented by to provide a method for monitoring a patient's condition, from loose cluster 1
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+49. Cluster represented by to provide a method of manufacturing a medical device, from loose cluster 1
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ 2. Cluster represented by to provide a honing device,from loose cluster 2
+ _______________________________________________________________________
+
+50. Cluster represented by to provide a medical solution packaging assembly, from loose cluster 1
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ 2. Cluster represented by to provide a method of manufacturing gear forms,from loose cluster 0
+ 3. Cluster represented by to provide a method for making a package,from loose cluster 0
+ _______________________________________________________________________
+
+51. Cluster represented by to provide a device for dispensing medical adhesive, from loose cluster 1
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ 2. Cluster represented by to provide a transport device for transporting at least one product,from loose cluster 0
+ 3. Cluster represented by to provide a transaction instrument,from loose cluster 0
+ _______________________________________________________________________
+
+52. Cluster represented by to provide a device for administering a medication, from loose cluster 1
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a transport device for transporting at least one product,from loose cluster 0
+ 2. Cluster represented by to provide a transaction instrument,from loose cluster 0
+ _______________________________________________________________________
+
+53. Cluster represented by to provide a method for delivering a medical agent to a treatment site, from loose cluster 1
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a transport device for transporting at least one product,from loose cluster 0
+ 2. Cluster represented by to provide a transaction instrument,from loose cluster 0
+ _______________________________________________________________________
+
+54. Cluster represented by to provide a device for delivering an active substance to the eye, from loose cluster 1
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a material handling device,from loose cluster 2
+ 2. Cluster represented by to provide a method of and apparatus for examination of visual fields,from loose cluster 2
+ 3. Cluster represented by to provide a transport device for transporting at least one product,from loose cluster 0
+ 4. Cluster represented by to provide a transaction instrument,from loose cluster 0
+ _______________________________________________________________________
+
+55. Cluster represented by to provide a dosage device, from loose cluster 1
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+56. Cluster represented by to provide a device for dispensing a dose of a medicament, from loose cluster 1
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a system for transporting a product,from loose cluster 0
+ 2. Cluster represented by to provide a transaction instrument,from loose cluster 0
+ _______________________________________________________________________
+
+57. Cluster represented by to provide a method of administering anesthesia, from loose cluster 1
+The cluster is connected to the following clusters:
+1. Cluster represented by to provide a device for occlusive devices,from loose cluster 2
+ 2. Cluster represented by to remove materials from a body cavity,from loose cluster 4
+ _______________________________________________________________________
+
+58. Cluster represented by to provide a prosthetic device, from loose cluster 1
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+
+59. Cluster represented by to detect a test substance, from loose cluster 1
+The cluster is connected to the following clusters:
+_______________________________________________________________________
+

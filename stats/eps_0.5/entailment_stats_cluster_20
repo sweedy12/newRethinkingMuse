@@ -1,0 +1,7 @@
+Stats about the entailment properties of the cluster
+the original cluster has 94 points. 
+the number of points in the cluster that entail another point is 87, while 7 examples do not entail others.
+the average number of examples entailed from another example is 6.655172413793103
+the number of examples in the cluster that are entailed by another example is 54, while 40 examples are not entailed by another.
+For an example which is entailed by another, the average number of examples entailing it is 10.722222222222221
+The cluster also has 30 cycles in it. 

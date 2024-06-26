@@ -1,0 +1,250 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1>cluster 0 graph</h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1>cluster 0 graph</h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+             #loadingBar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width: 100%;
+                 height: 600px;
+                 background-color:rgba(200,200,200,0.8);
+                 -webkit-transition: all 0.5s ease;
+                 -moz-transition: all 0.5s ease;
+                 -ms-transition: all 0.5s ease;
+                 -o-transition: all 0.5s ease;
+                 transition: all 0.5s ease;
+                 opacity:1;
+             }
+
+             #bar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width:20px;
+                 height:20px;
+                 margin:auto auto auto auto;
+                 border-radius:11px;
+                 border:2px solid rgba(30,30,30,0.05);
+                 background: rgb(0, 173, 246); /* Old browsers */
+                 box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+             }
+
+             #border {
+                 position:absolute;
+                 top:10px;
+                 left:10px;
+                 width:500px;
+                 height:23px;
+                 margin:auto auto auto auto;
+                 box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+                 border-radius:10px;
+             }
+
+             #text {
+                 position:absolute;
+                 top:8px;
+                 left:530px;
+                 width:30px;
+                 height:50px;
+                 margin:auto auto auto auto;
+                 font-size:22px;
+                 color: #000000;
+             }
+
+             div.outerBorder {
+                 position:relative;
+                 top:400px;
+                 width:600px;
+                 height:44px;
+                 margin:auto auto auto auto;
+                 border:8px solid rgba(0,0,0,0.1);
+                 background: rgb(252,252,252); /* Old browsers */
+                 background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+                 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+                 background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+                 background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+                 background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+                 background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+                 border-radius:72px;
+                 box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+             }
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+            <div id="loadingBar">
+              <div class="outerBorder">
+                <div id="text">0%</div>
+                <div id="border">
+                  <div id="bar"></div>
+                </div>
+              </div>
+            </div>
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "black", "font": {"color": "black"}, "id": 0, "label": 0, "shape": "dot", "title": "to provide a thermal management system for a vehicle"}, {"color": "black", "font": {"color": "black"}, "id": 1, "label": 1, "shape": "dot", "title": "to provide a fuel pump mounting system"}, {"color": "black", "font": {"color": "black"}, "id": 2, "label": 2, "shape": "dot", "title": "to provide a motorcycle with a starter motor that is located above the transmission"}, {"color": "black", "font": {"color": "black"}, "id": 3, "label": 3, "shape": "dot", "title": "to provide a fan blade with a lower susceptibility to flutter"}, {"color": "pink", "font": {"color": "black"}, "id": 4, "label": 4, "shape": "dot", "title": "to provide a device for holding a head in a fixed position"}, {"color": "black", "font": {"color": "black"}, "id": 5, "label": 5, "shape": "dot", "title": "to provide a clutch mechanism which can be adjusted to keep clutch pedal load and clutch clamp load constant"}, {"color": "black", "font": {"color": "black"}, "id": 6, "label": 6, "shape": "dot", "title": "to provide a vehicle brake system"}, {"color": "black", "font": {"color": "black"}, "id": 7, "label": 7, "shape": "dot", "title": "to provide a daylight portable lamp for inspecting painted surfaces, in particular in the course of paint repair work on motor vehicles"}, {"color": "black", "font": {"color": "black"}, "id": 8, "label": 8, "shape": "dot", "title": "to provide a coating booth"}, {"color": "black", "font": {"color": "black"}, "id": 9, "label": 9, "shape": "dot", "title": "to provide a fan with a high durability"}, {"color": "pink", "font": {"color": "black"}, "id": 10, "label": 10, "shape": "dot", "title": "to provide a method for removing a foreign object from the eye"}, {"color": "black", "font": {"color": "black"}, "id": 11, "label": 11, "shape": "dot", "title": "to protect the inventor\u0027s invention"}, {"color": "black", "font": {"color": "black"}, "id": 12, "label": 12, "shape": "dot", "title": "to provide a smart shoe with a pressure sensor, a temperature sensor, an acceleration sensor and an altitude sensor"}, {"color": "black", "font": {"color": "black"}, "id": 13, "label": 13, "shape": "dot", "title": "to provide a continuous-type long-ranged molten metal level measuring device and a thermal system using a multi-point temperature sensor"}, {"color": "black", "font": {"color": "black"}, "id": 14, "label": 14, "shape": "dot", "title": "to provide a method for measuring the amount of particulate matter in the air"}, {"color": "pink", "font": {"color": "black"}, "id": 15, "label": 15, "shape": "dot", "title": "to provide a mirror with a reflective layer formed thereon"}, {"color": "black", "font": {"color": "black"}, "id": 16, "label": 16, "shape": "dot", "title": "to provide a device for measuring the swing angle of a mirror"}, {"color": "pink", "font": {"color": "black"}, "id": 17, "label": 17, "shape": "dot", "title": "to provide a head-up display"}, {"color": "black", "font": {"color": "black"}, "id": 18, "label": 18, "shape": "dot", "title": "to provide a pair of glasses with a wearing cushion device"}, {"color": "black", "font": {"color": "black"}, "id": 19, "label": 19, "shape": "dot", "title": "to provide a method and apparatus for adjusting the filter of a vehicle camera"}, {"color": "black", "font": {"color": "black"}, "id": 20, "label": 20, "shape": "dot", "title": "to provide a method for printing on a sheet"}, {"color": "black", "font": {"color": "black"}, "id": 21, "label": 21, "shape": "dot", "title": "to provide a system for monitoring a driver\u0027s health"}, {"color": "black", "font": {"color": "black"}, "id": 22, "label": 22, "shape": "dot", "title": "to provide a touch sensitive display device and a method of detecting user input from a driver side or passenger side in a motor vehicle"}, {"color": "black", "font": {"color": "black"}, "id": 23, "label": 23, "shape": "dot", "title": "to prevent the vehicle from being stolen"}, {"color": "black", "font": {"color": "black"}, "id": 24, "label": 24, "shape": "dot", "title": "to provide a method of capturing thermal pattern with optimised heating of pixels"}, {"color": "pink", "font": {"color": "black"}, "id": 25, "label": 25, "shape": "dot", "title": "to provide a method for recognizing a person"}, {"color": "black", "font": {"color": "black"}, "id": 26, "label": 26, "shape": "dot", "title": "to provide a parking assist system"}, {"color": "black", "font": {"color": "black"}, "id": 27, "label": 27, "shape": "dot", "title": "to provide a system for comparing a head position of a passenger of a motor vehicle, determined by a determination unit, with a reference measurement"}, {"color": "black", "font": {"color": "black"}, "id": 28, "label": 28, "shape": "dot", "title": "to provide a method for generating soil maps and application prescriptions"}, {"color": "black", "font": {"color": "black"}, "id": 29, "label": 29, "shape": "dot", "title": "to provide a method for creating a mirror image of a vehicle body"}, {"color": "black", "font": {"color": "black"}, "id": 30, "label": 30, "shape": "dot", "title": "to provide a method for manufacturing an acoustic panel"}, {"color": "black", "font": {"color": "black"}, "id": 31, "label": 31, "shape": "dot", "title": "to provide a solar collector"}, {"color": "pink", "font": {"color": "black"}, "id": 32, "label": 32, "shape": "dot", "title": "to provide a method for detecting the presence of another vehicle in a vehicle"}, {"color": "deepskyeblue", "font": {"color": "black"}, "id": 33, "label": 33, "shape": "dot", "title": "to provide a device for controlling a motorized wheel"}, {"color": "black", "font": {"color": "black"}, "id": 34, "label": 34, "shape": "dot", "title": "to provide a thin panel loudspeaker"}, {"color": "black", "font": {"color": "black"}, "id": 35, "label": 35, "shape": "dot", "title": "to provide a hearing aid"}, {"color": "black", "font": {"color": "black"}, "id": 36, "label": 36, "shape": "dot", "title": "to provide a system for managing residue from agricultural vehicles"}, {"color": "black", "font": {"color": "black"}, "id": 37, "label": 37, "shape": "dot", "title": "to provide a method for controlling infestation of plants by fungi"}, {"color": "black", "font": {"color": "black"}, "id": 38, "label": 38, "shape": "dot", "title": "to provide a plant for the treatment of whole muscle meat"}, {"color": "black", "font": {"color": "black"}, "id": 39, "label": 39, "shape": "dot", "title": "to provide a meat replacement product"}, {"color": "black", "font": {"color": "black"}, "id": 40, "label": 40, "shape": "dot", "title": "to provide a maternity garment"}, {"color": "pink", "font": {"color": "black"}, "id": 41, "label": 41, "shape": "dot", "title": "to provide a safety garment for infants"}, {"color": "black", "font": {"color": "black"}, "id": 42, "label": 42, "shape": "dot", "title": "to provide a skin care mask glove"}, {"color": "deepskyeblue", "font": {"color": "black"}, "id": 43, "label": 43, "shape": "dot", "title": "to provide a flexible sole and upper for an article of footwear"}, {"color": "black", "font": {"color": "black"}, "id": 44, "label": 44, "shape": "dot", "title": "to provide a sunshade"}, {"color": "pink", "font": {"color": "black"}, "id": 45, "label": 45, "shape": "dot", "title": "to provide a hair retaining device"}, {"color": "pink", "font": {"color": "black"}, "id": 46, "label": 46, "shape": "dot", "title": "to provide a container for cosmetics"}, {"color": "black", "font": {"color": "black"}, "id": 47, "label": 47, "shape": "dot", "title": "to provide a magnifying cosmetic mirror"}, {"color": "black", "font": {"color": "black"}, "id": 48, "label": 48, "shape": "dot", "title": "to provide a toothbrush"}, {"color": "black", "font": {"color": "black"}, "id": 49, "label": 49, "shape": "dot", "title": "to provide a brush head with a handle"}, {"color": "black", "font": {"color": "black"}, "id": 50, "label": 50, "shape": "dot", "title": "to provide a table with a horizontal surface"}, {"color": "black", "font": {"color": "black"}, "id": 51, "label": 51, "shape": "dot", "title": "to provide a sofa seat cushion"}, {"color": "deepskyeblue", "font": {"color": "black"}, "id": 52, "label": 52, "shape": "dot", "title": "to provide a seat element which is pivotable"}, {"color": "black", "font": {"color": "black"}, "id": 53, "label": 53, "shape": "dot", "title": "to provide a mattress with a spring system"}, {"color": "pink", "font": {"color": "black"}, "id": 54, "label": 54, "shape": "dot", "title": "to provide a portable lounge"}, {"color": "black", "font": {"color": "black"}, "id": 55, "label": 55, "shape": "dot", "title": "to provide a grilling pan for cooking proteins"}, {"color": "black", "font": {"color": "black"}, "id": 56, "label": 56, "shape": "dot", "title": "to provide a coffee maker"}, {"color": "black", "font": {"color": "black"}, "id": 57, "label": 57, "shape": "dot", "title": "to provide a sticky cleaner"}, {"color": "black", "font": {"color": "black"}, "id": 58, "label": 58, "shape": "dot", "title": "to provide a wearable monitor for extended wear"}, {"color": "black", "font": {"color": "black"}, "id": 59, "label": 59, "shape": "dot", "title": "to provide a sheet that is usable in a use mode which is any one of an underlay mode and a cover mode"}, {"color": "black", "font": {"color": "black"}, "id": 60, "label": 60, "shape": "dot", "title": "to provide a method for vascular roadmapping"}, {"color": "pink", "font": {"color": "black"}, "id": 61, "label": 61, "shape": "dot", "title": "to provide a method for repairing an articular surface"}, {"color": "black", "font": {"color": "black"}, "id": 62, "label": 62, "shape": "dot", "title": "to provide a method for removing debris from within an ultrasonic surgical instrument"}, {"color": "black", "font": {"color": "black"}, "id": 63, "label": 63, "shape": "dot", "title": "to provide a device for cleaning the teeth, tongue, gums and/or roof of the mouth"}, {"color": "black", "font": {"color": "black"}, "id": 64, "label": 64, "shape": "dot", "title": "to provide a wearable garment device that can be used to support proprioceptive posture recovery and rebalance"}, {"color": "olive", "font": {"color": "black"}, "id": 65, "label": 65, "shape": "dot", "title": "to provide a disposable absorbent article"}, {"color": "black", "font": {"color": "black"}, "id": 66, "label": 66, "shape": "dot", "title": "to provide a person support apparatus with acceleration detection"}, {"color": "pink", "font": {"color": "black"}, "id": 67, "label": 67, "shape": "dot", "title": "to provide a device for assisting a user in standing"}, {"color": "black", "font": {"color": "black"}, "id": 68, "label": 68, "shape": "dot", "title": "to provide a dental composition"}, {"color": "black", "font": {"color": "black"}, "id": 69, "label": 69, "shape": "dot", "title": "to provide a hair coloring mixture"}, {"color": "black", "font": {"color": "black"}, "id": 70, "label": 70, "shape": "dot", "title": "to increase hair mass"}, {"color": "black", "font": {"color": "black"}, "id": 71, "label": 71, "shape": "dot", "title": "to protect the skin from pollution"}, {"color": "black", "font": {"color": "black"}, "id": 72, "label": 72, "shape": "dot", "title": "to provide a modified release tablet composition"}, {"color": "deepskyeblue", "font": {"color": "black"}, "id": 73, "label": 73, "shape": "dot", "title": "to provide a method of treating skin conditions"}, {"color": "pink", "font": {"color": "black"}, "id": 74, "label": 74, "shape": "dot", "title": "to provide a skin substitute"}, {"color": "black", "font": {"color": "black"}, "id": 75, "label": 75, "shape": "dot", "title": "to provide a method for making a magnesium alloy with a controlled degradation rate"}, {"color": "black", "font": {"color": "black"}, "id": 76, "label": 76, "shape": "dot", "title": "to provide a device for removing hair from the body"}, {"color": "black", "font": {"color": "black"}, "id": 77, "label": 77, "shape": "dot", "title": "to provide a wearable device for sleep assistance"}, {"color": "black", "font": {"color": "black"}, "id": 78, "label": 78, "shape": "dot", "title": "to provide a method for determining a swimming style of a user"}, {"color": "black", "font": {"color": "black"}, "id": 79, "label": 79, "shape": "dot", "title": "to provide a child\u0027s swing seat with a cover"}, {"color": "black", "font": {"color": "black"}, "id": 80, "label": 80, "shape": "dot", "title": "to provide a filter element with a luminescent marker"}, {"color": "black", "font": {"color": "black"}, "id": 81, "label": 81, "shape": "dot", "title": "to provide a composite membrane with improved performance and/or durability"}, {"color": "black", "font": {"color": "black"}, "id": 82, "label": 82, "shape": "dot", "title": "to provide a glass substrate for observing minute substances"}, {"color": "black", "font": {"color": "black"}, "id": 83, "label": 83, "shape": "dot", "title": "to provide a stirrer"}, {"color": "black", "font": {"color": "black"}, "id": 84, "label": 84, "shape": "dot", "title": "to provide a method for removing oil from a fingerprint"}, {"color": "black", "font": {"color": "black"}, "id": 85, "label": 85, "shape": "dot", "title": "to provide a collector composition for mineral flotation"}, {"color": "black", "font": {"color": "black"}, "id": 86, "label": 86, "shape": "dot", "title": "to provide a system for spraying agricultural products"}, {"color": "black", "font": {"color": "black"}, "id": 87, "label": 87, "shape": "dot", "title": "to provide a device for applying a coating to a web"}, {"color": "black", "font": {"color": "black"}, "id": 88, "label": 88, "shape": "dot", "title": "to provide a method for measuring surface nanoparticles"}, {"color": "black", "font": {"color": "black"}, "id": 89, "label": 89, "shape": "dot", "title": "to provide a method for stamping a product"}, {"color": "black", "font": {"color": "black"}, "id": 90, "label": 90, "shape": "dot", "title": "to provide a method for manufacturing a polishing layer"}, {"color": "black", "font": {"color": "black"}, "id": 91, "label": 91, "shape": "dot", "title": "to provide a grinder with a cover"}, {"color": "black", "font": {"color": "black"}, "id": 92, "label": 92, "shape": "dot", "title": "to provide a tire with a stiffer tread"}, {"color": "pink", "font": {"color": "black"}, "id": 93, "label": 93, "shape": "dot", "title": "to provide a multilayer structure"}, {"color": "black", "font": {"color": "black"}, "id": 94, "label": 94, "shape": "dot", "title": "to provide a pressure sensitive adhesive sheet"}, {"color": "black", "font": {"color": "black"}, "id": 95, "label": 95, "shape": "dot", "title": "to provide a method for applying a new d\u00e9cor on a surface of an object"}, {"color": "black", "font": {"color": "black"}, "id": 96, "label": 96, "shape": "dot", "title": "to provide a printer with a thermal head"}, {"color": "black", "font": {"color": "black"}, "id": 97, "label": 97, "shape": "dot", "title": "to provide a printer with a print head that can print in a single pass"}, {"color": "pink", "font": {"color": "black"}, "id": 98, "label": 98, "shape": "dot", "title": "to provide a method for cooling a print head"}, {"color": "olive", "font": {"color": "black"}, "id": 99, "label": 99, "shape": "dot", "title": "to protect the security feature"}, {"color": "pink", "font": {"color": "black"}, "id": 100, "label": 100, "shape": "dot", "title": "to provide a method for making a tire"}, {"color": "black", "font": {"color": "black"}, "id": 101, "label": 101, "shape": "dot", "title": "to provide a method for inflating the tires of a vehicle"}, {"color": "black", "font": {"color": "black"}, "id": 102, "label": 102, "shape": "dot", "title": "to provide a vehicle seat belt system"}, {"color": "pink", "font": {"color": "black"}, "id": 103, "label": 103, "shape": "dot", "title": "to provide a sunroof device"}, {"color": "black", "font": {"color": "black"}, "id": 104, "label": 104, "shape": "dot", "title": "to provide a child\u0027s vehicle with a motor drive selector mechanism"}, {"color": "black", "font": {"color": "black"}, "id": 105, "label": 105, "shape": "dot", "title": "to provide a wheel drive system"}, {"color": "black", "font": {"color": "black"}, "id": 106, "label": 106, "shape": "dot", "title": "to provide a battery pack with a battery cell which is protected from over-discharge"}, {"color": "deepskyeblue", "font": {"color": "black"}, "id": 107, "label": 107, "shape": "dot", "title": "to provide a device for determining the position of a vehicle seat"}, {"color": "black", "font": {"color": "black"}, "id": 108, "label": 108, "shape": "dot", "title": "to provide a seat that can be configured to be used as a bed"}, {"color": "black", "font": {"color": "black"}, "id": 109, "label": 109, "shape": "dot", "title": "to provide a seat back that can be adjusted to a variety of positions"}, {"color": "pink", "font": {"color": "black"}, "id": 110, "label": 110, "shape": "dot", "title": "to provide a child safety seat assembly"}, {"color": "deepskyeblue", "font": {"color": "black"}, "id": 111, "label": 111, "shape": "dot", "title": "to provide a seat cushion assembly"}, {"color": "black", "font": {"color": "black"}, "id": 112, "label": 112, "shape": "dot", "title": "to provide a seat cushion with a vibration isolation structure"}, {"color": "pink", "font": {"color": "black"}, "id": 113, "label": 113, "shape": "dot", "title": "to provide a seat adjuster"}, {"color": "black", "font": {"color": "black"}, "id": 114, "label": 114, "shape": "dot", "title": "to provide a cup holder for a vehicle"}, {"color": "black", "font": {"color": "black"}, "id": 115, "label": 115, "shape": "dot", "title": "to prevent or reduce collision damage to a parked vehicle"}, {"color": "pink", "font": {"color": "black"}, "id": 116, "label": 116, "shape": "dot", "title": "to provide a method for cloaking objects"}, {"color": "black", "font": {"color": "black"}, "id": 117, "label": 117, "shape": "dot", "title": "to provide a headliner for a vehicle roof"}, {"color": "deepskyeblue", "font": {"color": "black"}, "id": 118, "label": 118, "shape": "dot", "title": "to control the speed of a vehicle"}, {"color": "pink", "font": {"color": "black"}, "id": 119, "label": 119, "shape": "dot", "title": "to provide a restraint bar for a vehicle"}, {"color": "pink", "font": {"color": "black"}, "id": 120, "label": 120, "shape": "dot", "title": "to provide a steering device for a vehicle"}, {"color": "black", "font": {"color": "black"}, "id": 121, "label": 121, "shape": "dot", "title": "to provide a system for detecting obstacles in a work vehicle"}, {"color": "black", "font": {"color": "black"}, "id": 122, "label": 122, "shape": "dot", "title": "to provide a lane keeping system for autonomous vehicles"}, {"color": "black", "font": {"color": "black"}, "id": 123, "label": 123, "shape": "dot", "title": "to provide a system and method for idle coasting management of a vehicle having predictive cruise control"}, {"color": "pink", "font": {"color": "black"}, "id": 124, "label": 124, "shape": "dot", "title": "to provide a method for determining driver attention"}, {"color": "black", "font": {"color": "black"}, "id": 125, "label": 125, "shape": "dot", "title": "to provide a clothing rack"}, {"color": "olive", "font": {"color": "black"}, "id": 126, "label": 126, "shape": "dot", "title": "to provide a vehicle-body front structure"}, {"color": "pink", "font": {"color": "black"}, "id": 127, "label": 127, "shape": "dot", "title": "to provide a panel structure for a vehicle"}, {"color": "pink", "font": {"color": "black"}, "id": 128, "label": 128, "shape": "dot", "title": "to protect the cab of a vehicle from damage"}, {"color": "pink", "font": {"color": "black"}, "id": 129, "label": 129, "shape": "dot", "title": "to provide a collapsible vehicle"}, {"color": "black", "font": {"color": "black"}, "id": 130, "label": 130, "shape": "dot", "title": "to provide a snowmobile with a snow guard"}, {"color": "black", "font": {"color": "black"}, "id": 131, "label": 131, "shape": "dot", "title": "to provide a watercraft chair"}, {"color": "black", "font": {"color": "black"}, "id": 132, "label": 132, "shape": "dot", "title": "to provide a method for controlling a surf wake"}, {"color": "black", "font": {"color": "black"}, "id": 133, "label": 133, "shape": "dot", "title": "to provide a mount for a boat"}, {"color": "black", "font": {"color": "black"}, "id": 134, "label": 134, "shape": "dot", "title": "to provide a folding wing tip"}, {"color": "black", "font": {"color": "black"}, "id": 135, "label": 135, "shape": "dot", "title": "to provide a method of balancing a rotorcraft tail rotor"}, {"color": "black", "font": {"color": "black"}, "id": 136, "label": 136, "shape": "dot", "title": "to provide a method for maintaining and stabilizing the position and orientation of a payload attached to a high-altitude balloon"}, {"color": "black", "font": {"color": "black"}, "id": 137, "label": 137, "shape": "dot", "title": "to provide a seat with a loudspeaker system"}, {"color": "pink", "font": {"color": "black"}, "id": 138, "label": 138, "shape": "dot", "title": "to provide a seat with a backrest impact safety device"}, {"color": "black", "font": {"color": "black"}, "id": 139, "label": 139, "shape": "dot", "title": "to detect ice accumulation on the rotor"}, {"color": "black", "font": {"color": "black"}, "id": 140, "label": 140, "shape": "dot", "title": "to provide a method for separating a package blister from the cards which retain it to promote recycling of the component parts of a package"}, {"color": "black", "font": {"color": "black"}, "id": 141, "label": 141, "shape": "dot", "title": "to provide a method for keeping insects out of shipment loads"}, {"color": "pink", "font": {"color": "black"}, "id": 142, "label": 142, "shape": "dot", "title": "to provide a device for transporting sheets"}, {"color": "pink", "font": {"color": "black"}, "id": 143, "label": 143, "shape": "dot", "title": "to provide a process for producing structured coatings"}, {"color": "black", "font": {"color": "black"}, "id": 144, "label": 144, "shape": "dot", "title": "to provide a surface-treated carbon nanotube"}]);
+                  edges = new vis.DataSet([{"arrowStrikethrough": false, "arrows": "to", "from": 1, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 2, "to": 33}, {"arrowStrikethrough": false, "arrows": "to", "from": 7, "to": 61}, {"arrowStrikethrough": false, "arrows": "to", "from": 7, "to": 103}, {"arrowStrikethrough": false, "arrows": "to", "from": 9, "to": 45}, {"arrowStrikethrough": false, "arrows": "to", "from": 12, "to": 93}, {"arrowStrikethrough": false, "arrows": "to", "from": 13, "to": 93}, {"arrowStrikethrough": false, "arrows": "to", "from": 22, "to": 25}, {"arrowStrikethrough": false, "arrows": "to", "from": 22, "to": 32}, {"arrowStrikethrough": false, "arrows": "to", "from": 22, "to": 124}, {"arrowStrikethrough": false, "arrows": "to", "from": 26, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 26, "to": 67}, {"arrowStrikethrough": false, "arrows": "to", "from": 26, "to": 107}, {"arrowStrikethrough": false, "arrows": "to", "from": 26, "to": 124}, {"arrowStrikethrough": false, "arrows": "to", "from": 27, "to": 4}, {"arrowStrikethrough": false, "arrows": "to", "from": 27, "to": 25}, {"arrowStrikethrough": false, "arrows": "to", "from": 27, "to": 124}, {"arrowStrikethrough": false, "arrows": "to", "from": 27, "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 27, "to": 32}, {"arrowStrikethrough": false, "arrows": "to", "from": 31, "to": 10}, {"arrowStrikethrough": false, "arrows": "to", "from": 33, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 42, "to": 74}, {"arrowStrikethrough": false, "arrows": "to", "from": 42, "to": 46}, {"arrowStrikethrough": false, "arrows": "to", "from": 44, "to": 74}, {"arrowStrikethrough": false, "arrows": "to", "from": 44, "to": 103}, {"arrowStrikethrough": false, "arrows": "to", "from": 44, "to": 15}, {"arrowStrikethrough": false, "arrows": "to", "from": 47, "to": 46}, {"arrowStrikethrough": false, "arrows": "to", "from": 48, "to": 46}, {"arrowStrikethrough": false, "arrows": "to", "from": 49, "to": 45}, {"arrowStrikethrough": false, "arrows": "to", "from": 51, "to": 65}, {"arrowStrikethrough": false, "arrows": "to", "from": 51, "to": 54}, {"arrowStrikethrough": false, "arrows": "to", "from": 53, "to": 65}, {"arrowStrikethrough": false, "arrows": "to", "from": 53, "to": 142}, {"arrowStrikethrough": false, "arrows": "to", "from": 53, "to": 54}, {"arrowStrikethrough": false, "arrows": "to", "from": 53, "to": 4}, {"arrowStrikethrough": false, "arrows": "to", "from": 54, "to": 52}, {"arrowStrikethrough": false, "arrows": "to", "from": 59, "to": 93}, {"arrowStrikethrough": false, "arrows": "to", "from": 63, "to": 61}, {"arrowStrikethrough": false, "arrows": "to", "from": 63, "to": 93}, {"arrowStrikethrough": false, "arrows": "to", "from": 64, "to": 67}, {"arrowStrikethrough": false, "arrows": "to", "from": 66, "to": 25}, {"arrowStrikethrough": false, "arrows": "to", "from": 74, "to": 73}, {"arrowStrikethrough": false, "arrows": "to", "from": 78, "to": 25}, {"arrowStrikethrough": false, "arrows": "to", "from": 79, "to": 4}, {"arrowStrikethrough": false, "arrows": "to", "from": 79, "to": 116}, {"arrowStrikethrough": false, "arrows": "to", "from": 79, "to": 41}, {"arrowStrikethrough": false, "arrows": "to", "from": 79, "to": 110}, {"arrowStrikethrough": false, "arrows": "to", "from": 79, "to": 129}, {"arrowStrikethrough": false, "arrows": "to", "from": 79, "to": 54}, {"arrowStrikethrough": false, "arrows": "to", "from": 79, "to": 43}, {"arrowStrikethrough": false, "arrows": "to", "from": 81, "to": 93}, {"arrowStrikethrough": false, "arrows": "to", "from": 84, "to": 10}, {"arrowStrikethrough": false, "arrows": "to", "from": 89, "to": 143}, {"arrowStrikethrough": false, "arrows": "to", "from": 92, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 92, "to": 100}, {"arrowStrikethrough": false, "arrows": "to", "from": 96, "to": 98}, {"arrowStrikethrough": false, "arrows": "to", "from": 97, "to": 4}, {"arrowStrikethrough": false, "arrows": "to", "from": 101, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 102, "to": 118}, {"arrowStrikethrough": false, "arrows": "to", "from": 102, "to": 107}, {"arrowStrikethrough": false, "arrows": "to", "from": 102, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 103, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 103, "to": 43}, {"arrowStrikethrough": false, "arrows": "to", "from": 103, "to": 52}, {"arrowStrikethrough": false, "arrows": "to", "from": 104, "to": 33}, {"arrowStrikethrough": false, "arrows": "to", "from": 104, "to": 118}, {"arrowStrikethrough": false, "arrows": "to", "from": 104, "to": 124}, {"arrowStrikethrough": false, "arrows": "to", "from": 105, "to": 120}, {"arrowStrikethrough": false, "arrows": "to", "from": 109, "to": 113}, {"arrowStrikethrough": false, "arrows": "to", "from": 109, "to": 111}, {"arrowStrikethrough": false, "arrows": "to", "from": 111, "to": 65}, {"arrowStrikethrough": false, "arrows": "to", "from": 112, "to": 138}, {"arrowStrikethrough": false, "arrows": "to", "from": 113, "to": 107}, {"arrowStrikethrough": false, "arrows": "to", "from": 113, "to": 52}, {"arrowStrikethrough": false, "arrows": "to", "from": 114, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 117, "to": 127}, {"arrowStrikethrough": false, "arrows": "to", "from": 117, "to": 4}, {"arrowStrikethrough": false, "arrows": "to", "from": 117, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 117, "to": 93}, {"arrowStrikethrough": false, "arrows": "to", "from": 117, "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 118, "to": 99}, {"arrowStrikethrough": false, "arrows": "to", "from": 119, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 120, "to": 33}, {"arrowStrikethrough": false, "arrows": "to", "from": 120, "to": 118}, {"arrowStrikethrough": false, "arrows": "to", "from": 122, "to": 118}, {"arrowStrikethrough": false, "arrows": "to", "from": 123, "to": 118}, {"arrowStrikethrough": false, "arrows": "to", "from": 125, "to": 142}, {"arrowStrikethrough": false, "arrows": "to", "from": 128, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 129, "to": 65}, {"arrowStrikethrough": false, "arrows": "to", "from": 129, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 130, "to": 127}, {"arrowStrikethrough": false, "arrows": "to", "from": 130, "to": 93}, {"arrowStrikethrough": false, "arrows": "to", "from": 130, "to": 119}, {"arrowStrikethrough": false, "arrows": "to", "from": 130, "to": 33}, {"arrowStrikethrough": false, "arrows": "to", "from": 130, "to": 118}, {"arrowStrikethrough": false, "arrows": "to", "from": 130, "to": 54}, {"arrowStrikethrough": false, "arrows": "to", "from": 130, "to": 43}, {"arrowStrikethrough": false, "arrows": "to", "from": 130, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 131, "to": 129}, {"arrowStrikethrough": false, "arrows": "to", "from": 131, "to": 54}, {"arrowStrikethrough": false, "arrows": "to", "from": 131, "to": 4}, {"arrowStrikethrough": false, "arrows": "to", "from": 133, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 133, "to": 127}, {"arrowStrikethrough": false, "arrows": "to", "from": 134, "to": 129}, {"arrowStrikethrough": false, "arrows": "to", "from": 134, "to": 52}, {"arrowStrikethrough": false, "arrows": "to", "from": 135, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 138, "to": 126}, {"arrowStrikethrough": false, "arrows": "to", "from": 138, "to": 111}, {"arrowStrikethrough": false, "arrows": "to", "from": 138, "to": 99}, {"arrowStrikethrough": false, "arrows": "to", "from": 141, "to": 10}, {"arrowStrikethrough": false, "arrows": "to", "from": 144, "to": 93}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+                      network.on("stabilizationProgress", function(params) {
+                          document.getElementById('loadingBar').removeAttribute("style");
+                          var maxWidth = 496;
+                          var minWidth = 20;
+                          var widthFactor = params.iterations/params.total;
+                          var width = Math.max(minWidth,maxWidth * widthFactor);
+                          document.getElementById('bar').style.width = width + 'px';
+                          document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+                      });
+                      network.once("stabilizationIterationsDone", function() {
+                          document.getElementById('text').innerHTML = '100%';
+                          document.getElementById('bar').style.width = '496px';
+                          document.getElementById('loadingBar').style.opacity = 0;
+                          // really clean the dom element
+                          setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+                      });
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

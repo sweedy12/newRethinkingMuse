@@ -1,0 +1,24 @@
+Predicted edges which aren't true:
+1. a method for removing dust from a surface----> to effectively remove dirt
+2. to effectively remove dirt----> a substance for removing stains from an object
+
+
+GT edges which weren't found:
+1. a window cleaning method----> a method for removing dust from a surface
+2. a solution for washing glass surfaces----> an apparatus for maintaining a glass
+3. a solution for washing glass surfaces----> a method for polishing glass objects
+4. a method for enhancing food flavor----> a device used for cooking 
+5. to effectively remove dirt----> an apparatus for cleaning an object
+6. an apparatus for increasing the temperature of a space----> a temperature control device
+7. to heat a room efficiently----> a temperature control device
+8. a method to increase the heat in an oven----> a temperature control device
+9. a solution for efficiently cooling down inner parts of a computer----> a device for cooling down high-temperature devices
+10. a liquid-based solution for cooling a GPU----> a temperature control device
+11. a liquid-based solution for cooling a GPU----> a device for cooling down high-temperature devices
+
+
+
+The number of GT edges is 28
+The number of predicted edges is 19
+recall is 0.6071428571428571
+precision is 0.8947368421052632

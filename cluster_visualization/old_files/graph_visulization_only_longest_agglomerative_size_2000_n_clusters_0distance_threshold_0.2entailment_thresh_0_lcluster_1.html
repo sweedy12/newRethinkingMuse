@@ -1,0 +1,250 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1>cluster 1 graph</h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1>cluster 1 graph</h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+             #loadingBar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width: 100%;
+                 height: 600px;
+                 background-color:rgba(200,200,200,0.8);
+                 -webkit-transition: all 0.5s ease;
+                 -moz-transition: all 0.5s ease;
+                 -ms-transition: all 0.5s ease;
+                 -o-transition: all 0.5s ease;
+                 transition: all 0.5s ease;
+                 opacity:1;
+             }
+
+             #bar {
+                 position:absolute;
+                 top:0px;
+                 left:0px;
+                 width:20px;
+                 height:20px;
+                 margin:auto auto auto auto;
+                 border-radius:11px;
+                 border:2px solid rgba(30,30,30,0.05);
+                 background: rgb(0, 173, 246); /* Old browsers */
+                 box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+             }
+
+             #border {
+                 position:absolute;
+                 top:10px;
+                 left:10px;
+                 width:500px;
+                 height:23px;
+                 margin:auto auto auto auto;
+                 box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+                 border-radius:10px;
+             }
+
+             #text {
+                 position:absolute;
+                 top:8px;
+                 left:530px;
+                 width:30px;
+                 height:50px;
+                 margin:auto auto auto auto;
+                 font-size:22px;
+                 color: #000000;
+             }
+
+             div.outerBorder {
+                 position:relative;
+                 top:400px;
+                 width:600px;
+                 height:44px;
+                 margin:auto auto auto auto;
+                 border:8px solid rgba(0,0,0,0.1);
+                 background: rgb(252,252,252); /* Old browsers */
+                 background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+                 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+                 background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+                 background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+                 background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+                 background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+                 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+                 border-radius:72px;
+                 box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+             }
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+            <div id="loadingBar">
+              <div class="outerBorder">
+                <div id="text">0%</div>
+                <div id="border">
+                  <div id="bar"></div>
+                </div>
+              </div>
+            </div>
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "forestgreen", "font": {"color": "black"}, "id": 0, "label": 0, "shape": "dot", "title": "to provide a method and apparatus for treating pain"}, {"color": "thistle", "font": {"color": "black"}, "id": 1, "label": 1, "shape": "dot", "title": "to provide a device for the treatment of a patient"}, {"color": "black", "font": {"color": "black"}, "id": 2, "label": 2, "shape": "dot", "title": "to protect the inventor\u0027s invention"}, {"color": "black", "font": {"color": "black"}, "id": 3, "label": 3, "shape": "dot", "title": "to provide a method for determining the amount and uniformity of a delivered dose of drug"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 4, "label": 4, "shape": "dot", "title": "to provide a method for the preparation of a pharmaceutical composition"}, {"color": "yellow", "font": {"color": "black"}, "id": 5, "label": 5, "shape": "dot", "title": "to detect a test substance"}, {"color": "black", "font": {"color": "black"}, "id": 6, "label": 6, "shape": "dot", "title": "to provide a blood coagulation testing system"}, {"color": "black", "font": {"color": "black"}, "id": 7, "label": 7, "shape": "dot", "title": "to provide a system for monitoring a driver\u0027s health"}, {"color": "purple", "font": {"color": "black"}, "id": 8, "label": 8, "shape": "dot", "title": "to provide a method for monitoring a patient\u0027s condition"}, {"color": "black", "font": {"color": "black"}, "id": 9, "label": 9, "shape": "dot", "title": "to provide a method and apparatus for tracking the motion of a treatment target during a non-invasive therapy procedure"}, {"color": "palegreen", "font": {"color": "black"}, "id": 10, "label": 10, "shape": "dot", "title": "to provide a method for determining the location of a patient\u0027s eye"}, {"color": "black", "font": {"color": "black"}, "id": 11, "label": 11, "shape": "dot", "title": "to provide a method for determining the location of a mobile patient monitoring device"}, {"color": "khaki", "font": {"color": "black"}, "id": 12, "label": 12, "shape": "dot", "title": "to provide a system for facilitating rehabilitation therapy"}, {"color": "gray", "font": {"color": "black"}, "id": 13, "label": 13, "shape": "dot", "title": "to provide a system for activating a cued health assessment"}, {"color": "black", "font": {"color": "black"}, "id": 14, "label": 14, "shape": "dot", "title": "to provide a method for detecting protoporphyrinogen oxidase inhibitors in soybeans"}, {"color": "limegreen", "font": {"color": "black"}, "id": 15, "label": 15, "shape": "dot", "title": "to provide a method for inserting an endoscope"}, {"color": "black", "font": {"color": "black"}, "id": 16, "label": 16, "shape": "dot", "title": "to provide a method for measuring the refractive error of a patient"}, {"color": "gray", "font": {"color": "black"}, "id": 17, "label": 17, "shape": "dot", "title": "to provide a system and method for monitoring subjects in potential physiological distress"}, {"color": "khaki", "font": {"color": "black"}, "id": 18, "label": 18, "shape": "dot", "title": "to provide a method for determining patient suitability for a surgical procedure"}, {"color": "black", "font": {"color": "black"}, "id": 19, "label": 19, "shape": "dot", "title": "to provide a blood pressure monitor"}, {"color": "gray", "font": {"color": "black"}, "id": 20, "label": 20, "shape": "dot", "title": "to provide a method of detecting a heart condition"}, {"color": "gray", "font": {"color": "black"}, "id": 21, "label": 21, "shape": "dot", "title": "to provide a device for measuring the amount of oxygen in the blood"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 22, "label": 22, "shape": "dot", "title": "to monitor drug dosage"}, {"color": "blueviolet", "font": {"color": "black"}, "id": 23, "label": 23, "shape": "dot", "title": "to monitor a health characteristic of a user"}, {"color": "black", "font": {"color": "black"}, "id": 24, "label": 24, "shape": "dot", "title": "to provide a method for improving the accuracy of medical imaging"}, {"color": "forestgreen", "font": {"color": "black"}, "id": 25, "label": 25, "shape": "dot", "title": "to provide a tissue cutting member for a biopsy device"}, {"color": "black", "font": {"color": "black"}, "id": 26, "label": 26, "shape": "dot", "title": "to provide a jaw for a surgical tubular shaft instrument"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 27, "label": 27, "shape": "dot", "title": "to provide a device for dispensing medical adhesive"}, {"color": "black", "font": {"color": "black"}, "id": 28, "label": 28, "shape": "dot", "title": "to provide a method of attaching a suture to a bone"}, {"color": "khaki", "font": {"color": "black"}, "id": 29, "label": 29, "shape": "dot", "title": "to provide a surgical stapling device"}, {"color": "black", "font": {"color": "black"}, "id": 30, "label": 30, "shape": "dot", "title": "to provide a surgical stapling device with minimal dead space"}, {"color": "gray", "font": {"color": "black"}, "id": 31, "label": 31, "shape": "dot", "title": "to provide a device for the treatment of a patient\u0027s back"}, {"color": "black", "font": {"color": "black"}, "id": 32, "label": 32, "shape": "dot", "title": "to provide a catheter for removing a urinary tract stone"}, {"color": "black", "font": {"color": "black"}, "id": 33, "label": 33, "shape": "dot", "title": "to provide a method of treating a patient with a balloon catheter"}, {"color": "gray", "font": {"color": "black"}, "id": 34, "label": 34, "shape": "dot", "title": "to describe a method of removing stenotic lesions in blood vessels"}, {"color": "black", "font": {"color": "black"}, "id": 35, "label": 35, "shape": "dot", "title": "to provide a method for the fixation of fractures and osteotomies"}, {"color": "deepskyeblue", "font": {"color": "black"}, "id": 36, "label": 36, "shape": "dot", "title": "to provide a surgical attachment"}, {"color": "black", "font": {"color": "black"}, "id": 37, "label": 37, "shape": "dot", "title": "to provide a catheter with a steerable tip"}, {"color": "skyblue", "font": {"color": "black"}, "id": 38, "label": 38, "shape": "dot", "title": "to provide a device for displacing a lumen within a patient in-vivo during a surgical procedure"}, {"color": "yellow", "font": {"color": "black"}, "id": 39, "label": 39, "shape": "dot", "title": "to provide a prosthetic device"}, {"color": "limegreen", "font": {"color": "black"}, "id": 40, "label": 40, "shape": "dot", "title": "to provide a method of treating a patient with a cataract"}, {"color": "black", "font": {"color": "black"}, "id": 41, "label": 41, "shape": "dot", "title": "to provide a prosthetic heart valve"}, {"color": "black", "font": {"color": "black"}, "id": 42, "label": 42, "shape": "dot", "title": "to provide a device for use in the transcatheter treatment of mitral valve regurgitation"}, {"color": "yellow", "font": {"color": "black"}, "id": 43, "label": 43, "shape": "dot", "title": "to provide a method of manufacturing a medical device"}, {"color": "black", "font": {"color": "black"}, "id": 44, "label": 44, "shape": "dot", "title": "to prevent cold welding, corrosion and tissue overgrowth between medical implant components"}, {"color": "gold", "font": {"color": "black"}, "id": 45, "label": 45, "shape": "dot", "title": "to provide a device for the treatment of a spinal injury"}, {"color": "gray", "font": {"color": "black"}, "id": 46, "label": 46, "shape": "dot", "title": "to provide a vascular implant with a side branch"}, {"color": "royalblue", "font": {"color": "black"}, "id": 47, "label": 47, "shape": "dot", "title": "to provide a handle for a medical device"}, {"color": "gold", "font": {"color": "black"}, "id": 48, "label": 48, "shape": "dot", "title": "to provide a device for ostomy"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 49, "label": 49, "shape": "dot", "title": "to provide a device for delivering an active substance to the eye"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 50, "label": 50, "shape": "dot", "title": "to provide a device for the treatment of incontinence"}, {"color": "black", "font": {"color": "black"}, "id": 51, "label": 51, "shape": "dot", "title": "to provide a method for increasing survival with favorable neurological function after cardiac arrest"}, {"color": "orange", "font": {"color": "black"}, "id": 52, "label": 52, "shape": "dot", "title": "to provide a medical solution packaging assembly"}, {"color": "orchid", "font": {"color": "black"}, "id": 53, "label": 53, "shape": "dot", "title": "to provide a method for delivering a therapeutic agent into the intestinal tract"}, {"color": "black", "font": {"color": "black"}, "id": 54, "label": 54, "shape": "dot", "title": "to provide a method of treating post-traumatic stress disorder"}, {"color": "olive", "font": {"color": "black"}, "id": 55, "label": 55, "shape": "dot", "title": "to provide a method of reducing the risk of medication-related overdose, death, or other injury associated with inappropriate consumption of alcohol in conjunction with prescription opioid analgesics"}, {"color": "forestgreen", "font": {"color": "black"}, "id": 56, "label": 56, "shape": "dot", "title": "to treat intrahepatic cholestatic diseases"}, {"color": "olive", "font": {"color": "black"}, "id": 57, "label": 57, "shape": "dot", "title": "to provide a method for treating sciatic pain"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 58, "label": 58, "shape": "dot", "title": "to provide a method of treating a disease or condition"}, {"color": "khaki", "font": {"color": "black"}, "id": 59, "label": 59, "shape": "dot", "title": "to provide a method for the treatment of preterm labor"}, {"color": "black", "font": {"color": "black"}, "id": 60, "label": 60, "shape": "dot", "title": "to provide a method for enhancing the effect of an immunotherapy for cancer in a subject"}, {"color": "skyblue", "font": {"color": "black"}, "id": 61, "label": 61, "shape": "dot", "title": "to provide a method for the treatment of a patient with a condition that is responsive to the administration of a drug"}, {"color": "gold", "font": {"color": "black"}, "id": 62, "label": 62, "shape": "dot", "title": "to provide a method for treating senescence-associated diseases and disorders"}, {"color": "black", "font": {"color": "black"}, "id": 63, "label": 63, "shape": "dot", "title": "to provide a method of treating stroke and traumatic brain injury"}, {"color": "black", "font": {"color": "black"}, "id": 64, "label": 64, "shape": "dot", "title": "to treat organophosphate exposure"}, {"color": "black", "font": {"color": "black"}, "id": 65, "label": 65, "shape": "dot", "title": "to provide a method of treating and/or preventing Dravet Syndrome in a patient such as a patient previously diagnosed with Dravet Syndrome, by administering an effective dose of fenfluramine or its pharmaceutically acceptable salt to that patient"}, {"color": "gray", "font": {"color": "black"}, "id": 66, "label": 66, "shape": "dot", "title": "to provide a method for the treatment and prophylaxis of a viral infection in a patient"}, {"color": "yellow", "font": {"color": "black"}, "id": 67, "label": 67, "shape": "dot", "title": "to provide a method for treating an inflammatory condition"}, {"color": "olive", "font": {"color": "black"}, "id": 68, "label": 68, "shape": "dot", "title": "to provide a composition with procoagulant cells and at least one factor Xa inhibitor, preferably rivaroxaban, as well as at least one thrombin inhibitor, preferably bivalirudin"}, {"color": "black", "font": {"color": "black"}, "id": 69, "label": 69, "shape": "dot", "title": "to provide a method for treating a patient with a condition characterized by an increase in blood acetaldehyde levels"}, {"color": "black", "font": {"color": "black"}, "id": 70, "label": 70, "shape": "dot", "title": "to provide a method for inducing cytotoxicity in cancer cells"}, {"color": "black", "font": {"color": "black"}, "id": 71, "label": 71, "shape": "dot", "title": "to describe a new method of treating cystic fibrosis"}, {"color": "gold", "font": {"color": "black"}, "id": 72, "label": 72, "shape": "dot", "title": "to provide a method for prophylaxis or treatment of ErbB1 positive cancers"}, {"color": "gold", "font": {"color": "black"}, "id": 73, "label": 73, "shape": "dot", "title": "to provide a vaccine composition"}, {"color": "black", "font": {"color": "black"}, "id": 74, "label": 74, "shape": "dot", "title": "to provide a live attenuated vaccine"}, {"color": "olive", "font": {"color": "black"}, "id": 75, "label": 75, "shape": "dot", "title": "to provide a method of treating a neurological or psychiatric condition in a human or animal subject"}, {"color": "magenta", "font": {"color": "black"}, "id": 76, "label": 76, "shape": "dot", "title": "to provide a method of treating skin conditions"}, {"color": "black", "font": {"color": "black"}, "id": 77, "label": 77, "shape": "dot", "title": "to provide a method of enhancing the absorption of orally administered steroids"}, {"color": "silver", "font": {"color": "black"}, "id": 78, "label": 78, "shape": "dot", "title": "to provide a method for inactivating viruses"}, {"color": "gray", "font": {"color": "black"}, "id": 79, "label": 79, "shape": "dot", "title": "to provide a method for gluing one or more pharmaceutical compounds on tissue, skin, mucosa, and/or hair"}, {"color": "black", "font": {"color": "black"}, "id": 80, "label": 80, "shape": "dot", "title": "to provide a centrifugal pump for medical use"}, {"color": "black", "font": {"color": "black"}, "id": 81, "label": 81, "shape": "dot", "title": "to provide a method for subretinal administration of therapeutic agent via a curved needle"}, {"color": "black", "font": {"color": "black"}, "id": 82, "label": 82, "shape": "dot", "title": "to provide a method for estimating a glucose level of a person having diabetes and selecting automatically open-loop and closed-loop control for a connected therapy delivery device"}, {"color": "gray", "font": {"color": "black"}, "id": 83, "label": 83, "shape": "dot", "title": "to provide a syringe with a breakaway feature"}, {"color": "khaki", "font": {"color": "black"}, "id": 84, "label": 84, "shape": "dot", "title": "to provide a device for dispensing a dose of a medicament"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 85, "label": 85, "shape": "dot", "title": "to provide a needle safety device"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 86, "label": 86, "shape": "dot", "title": "to provide a method for delivering a medical agent to a treatment site"}, {"color": "khaki", "font": {"color": "black"}, "id": 87, "label": 87, "shape": "dot", "title": "to provide a nasal delivery device"}, {"color": "black", "font": {"color": "black"}, "id": 88, "label": 88, "shape": "dot", "title": "to provide a tracheal applicator for enabling administering high flow therapy to tracheotomy patients"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 89, "label": 89, "shape": "dot", "title": "to provide a method for providing air/oxygen to a patient"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 90, "label": 90, "shape": "dot", "title": "to provide a catheter system"}, {"color": "gray", "font": {"color": "black"}, "id": 91, "label": 91, "shape": "dot", "title": "to provide a medical connector which is suitable for massive liquid infusion"}, {"color": "black", "font": {"color": "black"}, "id": 92, "label": 92, "shape": "dot", "title": "to provide a method and system for monitoring and treating a medical condition via posterior tibial nerve stimulation"}, {"color": "gray", "font": {"color": "black"}, "id": 93, "label": 93, "shape": "dot", "title": "to provide a vascular connector with an antimicrobial"}, {"color": "black", "font": {"color": "black"}, "id": 94, "label": 94, "shape": "dot", "title": "to provide a stationary exercise bike"}, {"color": "olive", "font": {"color": "black"}, "id": 95, "label": 95, "shape": "dot", "title": "to provide a method for analyzing a biological sample"}, {"color": "yellow", "font": {"color": "black"}, "id": 96, "label": 96, "shape": "dot", "title": "to provide a device for dispensing pharmaceuticals"}, {"color": "black", "font": {"color": "black"}, "id": 97, "label": 97, "shape": "dot", "title": "to provide a method for regulating hypoxia inducible factor (HIF) and/or endogenous erythropoietin (EPO), simultaneously having better pharmacokinetic parameter characteristics and being able to improve the drug concentration of the compound in animal bodies, in order to improve the curative effect and safety of the drug"}, {"color": "gray", "font": {"color": "black"}, "id": 98, "label": 98, "shape": "dot", "title": "to provide a method for treating central nervous system diseases"}, {"color": "black", "font": {"color": "black"}, "id": 99, "label": 99, "shape": "dot", "title": "to provide a method for treating a beta-3 adrenergic receptor-mediated disorder"}, {"color": "olive", "font": {"color": "black"}, "id": 100, "label": 100, "shape": "dot", "title": "to provide a method for treating or preventing diabetes"}, {"color": "orange", "font": {"color": "black"}, "id": 101, "label": 101, "shape": "dot", "title": "to provide a method of treating a patient with a condition characterized by a deficiency of a protein"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 102, "label": 102, "shape": "dot", "title": "to provide a method for treating obesity"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 103, "label": 103, "shape": "dot", "title": "to provide a method of treating a pulmonary disease or condition"}, {"color": "black", "font": {"color": "black"}, "id": 104, "label": 104, "shape": "dot", "title": "to provide a method of treating a subject having a CXCR5-responsive cancer"}, {"color": "whitesmoke", "font": {"color": "black"}, "id": 105, "label": 105, "shape": "dot", "title": "to describe a new class of analgesics"}, {"color": "pink", "font": {"color": "black"}, "id": 106, "label": 106, "shape": "dot", "title": "to provide a method for administering a medicament which comprises adhering to the mucosa of the oral or nasal cavity a pharmaceutical preparation comprising PA1 (a) a water-swellable and mucosa-adhesive polymeric matrix comprising about 50 to about 95% by weight of a cellulose ether and about 50 to about 5% by weight of a homo- or copolymer of acrylic acid or a pharmaceutically acceptable salt thereof, and PA1 (b) dispersed therein, a pharmaceutically effective amount of the medicament, said preparation releasing continuously the medicament at a controlled rate; and causing the released medicament to be absorbed through the mucosa or enterally"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 107, "label": 107, "shape": "dot", "title": "to provide a method for treating bacterial infections"}, {"color": "black", "font": {"color": "black"}, "id": 108, "label": 108, "shape": "dot", "title": "to produce antibiotics in the form of suppositories"}, {"color": "linen", "font": {"color": "black"}, "id": 109, "label": 109, "shape": "dot", "title": "to provide a new class of anthelmintic agents"}, {"color": "yellow", "font": {"color": "black"}, "id": 110, "label": 110, "shape": "dot", "title": "to provide a method for treating or preventing diseases which are based on inadequate performance of the pancreas, the bile and/or the liver"}, {"color": "olive", "font": {"color": "black"}, "id": 111, "label": 111, "shape": "dot", "title": "to prevent renal failure"}, {"color": "black", "font": {"color": "black"}, "id": 112, "label": 112, "shape": "dot", "title": "to provide a composition for the determination of tri-iodo thyronine in human blood serum"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 113, "label": 113, "shape": "dot", "title": "to provide a process for immobilizing biological material"}, {"color": "pink", "font": {"color": "black"}, "id": 114, "label": 114, "shape": "dot", "title": "to describe a new class of compounds which have anti-depressant properties"}, {"color": "khaki", "font": {"color": "black"}, "id": 115, "label": 115, "shape": "dot", "title": "to provide a pet sanitary facility"}, {"color": "black", "font": {"color": "black"}, "id": 116, "label": 116, "shape": "dot", "title": "to provide a method for adjusting the injection instant of an injection pump"}, {"color": "gray", "font": {"color": "black"}, "id": 117, "label": 117, "shape": "dot", "title": "to provide a therapeutic neck tractioning device"}, {"color": "palegreen", "font": {"color": "black"}, "id": 118, "label": 118, "shape": "dot", "title": "to provide a stabilizing fitting for an intravenous catheter"}, {"color": "black", "font": {"color": "black"}, "id": 119, "label": 119, "shape": "dot", "title": "to provide a programmable cardiac pacemaker"}, {"color": "silver", "font": {"color": "black"}, "id": 120, "label": 120, "shape": "dot", "title": "to monitor heartbeats"}, {"color": "olive", "font": {"color": "black"}, "id": 121, "label": 121, "shape": "dot", "title": "to provide a dental splinting device"}, {"color": "black", "font": {"color": "black"}, "id": 122, "label": 122, "shape": "dot", "title": "to provide a dry particulate vaccine"}, {"color": "black", "font": {"color": "black"}, "id": 123, "label": 123, "shape": "dot", "title": "to treat inflammatory and pyretic conditions in mammals, including humans"}, {"color": "black", "font": {"color": "black"}, "id": 124, "label": 124, "shape": "dot", "title": "to provide a method for the treatment of macular oedema"}, {"color": "gray", "font": {"color": "black"}, "id": 125, "label": 125, "shape": "dot", "title": "to provide a new anti-hypertensive agent"}, {"color": "black", "font": {"color": "black"}, "id": 126, "label": 126, "shape": "dot", "title": "to describe a new class of antidepressants"}, {"color": "limegreen", "font": {"color": "black"}, "id": 127, "label": 127, "shape": "dot", "title": "to provide a device for sealing an ostomy bag to the skin of a patient"}, {"color": "yellow", "font": {"color": "black"}, "id": 128, "label": 128, "shape": "dot", "title": "to provide a dosage device"}, {"color": "black", "font": {"color": "black"}, "id": 129, "label": 129, "shape": "dot", "title": "to prevent damages to the photoreceptor or fixing roller"}, {"color": "black", "font": {"color": "black"}, "id": 130, "label": 130, "shape": "dot", "title": "to provide a hunting arrow that causes a continuation of the bleeding in wounded game"}, {"color": "black", "font": {"color": "black"}, "id": 131, "label": 131, "shape": "dot", "title": "to provide a new m-diurethane having selective herbicidal action"}, {"color": "black", "font": {"color": "black"}, "id": 132, "label": 132, "shape": "dot", "title": "to provide a patient support stretcher for X-ray units"}, {"color": "black", "font": {"color": "black"}, "id": 133, "label": 133, "shape": "dot", "title": "to provide a method for fabricating wound hollow fiber dialysis cartridges"}, {"color": "khaki", "font": {"color": "black"}, "id": 134, "label": 134, "shape": "dot", "title": "to treat gastric ulcer-prone patients"}, {"color": "black", "font": {"color": "black"}, "id": 135, "label": 135, "shape": "dot", "title": "to provide a dosage composition of corticosteroids with calcium and optionally vitamins B12, C and/or D for treatment of arthritis and other rheumatic disease"}, {"color": "olive", "font": {"color": "black"}, "id": 136, "label": 136, "shape": "dot", "title": "to provide a method of treating depression"}, {"color": "silver", "font": {"color": "black"}, "id": 137, "label": 137, "shape": "dot", "title": "to describe a new class of antianxiety agents"}, {"color": "black", "font": {"color": "black"}, "id": 138, "label": 138, "shape": "dot", "title": "to provide a method for treating phenylketonuria"}, {"color": "lavender", "font": {"color": "black"}, "id": 139, "label": 139, "shape": "dot", "title": "to produce a new antibiotic"}, {"color": "pink", "font": {"color": "black"}, "id": 140, "label": 140, "shape": "dot", "title": "to provide a method for the selective herbicide"}, {"color": "black", "font": {"color": "black"}, "id": 141, "label": 141, "shape": "dot", "title": "to provide a bed that can be used by a patient who is unable to walk"}, {"color": "black", "font": {"color": "black"}, "id": 142, "label": 142, "shape": "dot", "title": "to provide a device for testing a breathing mask"}, {"color": "cyan", "font": {"color": "black"}, "id": 143, "label": 143, "shape": "dot", "title": "to provide a method of administering anesthesia"}, {"color": "black", "font": {"color": "black"}, "id": 144, "label": 144, "shape": "dot", "title": "to provide a device for measuring the amount of hormones in the body"}, {"color": "orchid", "font": {"color": "black"}, "id": 145, "label": 145, "shape": "dot", "title": "to provide a device for orthodontic treatment"}, {"color": "black", "font": {"color": "black"}, "id": 146, "label": 146, "shape": "dot", "title": "to provide a method for preparing a conjugate of insulin and ragweed antigen E"}, {"color": "linen", "font": {"color": "black"}, "id": 147, "label": 147, "shape": "dot", "title": "to provide a new class of compounds useful as anti-inflammatory agents"}, {"color": "olive", "font": {"color": "black"}, "id": 148, "label": 148, "shape": "dot", "title": "to provide a method of treating peripheral vascular disorders"}, {"color": "black", "font": {"color": "black"}, "id": 149, "label": 149, "shape": "dot", "title": "to grow human epidermal cells in tissue culture"}, {"color": "forestgreen", "font": {"color": "black"}, "id": 150, "label": 150, "shape": "dot", "title": "to provide a device for accommodating intraocular implant"}, {"color": "black", "font": {"color": "black"}, "id": 151, "label": 151, "shape": "dot", "title": "to provide a splint for immobilizing the elbow or wrist articulations of a patient during administration of an intravenous solution"}, {"color": "forestgreen", "font": {"color": "black"}, "id": 152, "label": 152, "shape": "dot", "title": "to fix a dental instrument in a handpiece"}, {"color": "black", "font": {"color": "black"}, "id": 153, "label": 153, "shape": "dot", "title": "to provide a method for separating granulocytes from blood"}, {"color": "olive", "font": {"color": "black"}, "id": 154, "label": 154, "shape": "dot", "title": "to provide a method of treating multiple sclerosis"}, {"color": "gray", "font": {"color": "black"}, "id": 155, "label": 155, "shape": "dot", "title": "to provide a method of regulating the immune response of a subject by administration of the novel compounds"}, {"color": "thistle", "font": {"color": "black"}, "id": 156, "label": 156, "shape": "dot", "title": "to provide a new acaricidal compound"}, {"color": "black", "font": {"color": "black"}, "id": 157, "label": 157, "shape": "dot", "title": "to provide a process for the preparation of a rabies vaccine"}]);
+                  edges = new vis.DataSet([{"arrowStrikethrough": false, "arrows": "to", "from": 1, "to": 106}, {"arrowStrikethrough": false, "arrows": "to", "from": 3, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 4, "to": 43}, {"arrowStrikethrough": false, "arrows": "to", "from": 6, "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 7, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 8, "to": 58}, {"arrowStrikethrough": false, "arrows": "to", "from": 9, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 11, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 13, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 14, "to": 5}, {"arrowStrikethrough": false, "arrows": "to", "from": 15, "to": 150}, {"arrowStrikethrough": false, "arrows": "to", "from": 15, "to": 152}, {"arrowStrikethrough": false, "arrows": "to", "from": 16, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 17, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 19, "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 19, "to": 21}, {"arrowStrikethrough": false, "arrows": "to", "from": 19, "to": 20}, {"arrowStrikethrough": false, "arrows": "to", "from": 20, "to": 120}, {"arrowStrikethrough": false, "arrows": "to", "from": 21, "to": 120}, {"arrowStrikethrough": false, "arrows": "to", "from": 22, "to": 5}, {"arrowStrikethrough": false, "arrows": "to", "from": 22, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 23, "to": 8}, {"arrowStrikethrough": false, "arrows": "to", "from": 24, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 25, "to": 95}, {"arrowStrikethrough": false, "arrows": "to", "from": 25, "to": 55}, {"arrowStrikethrough": false, "arrows": "to", "from": 25, "to": 48}, {"arrowStrikethrough": false, "arrows": "to", "from": 26, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 27, "to": 52}, {"arrowStrikethrough": false, "arrows": "to", "from": 28, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 29, "to": 27}, {"arrowStrikethrough": false, "arrows": "to", "from": 29, "to": 49}, {"arrowStrikethrough": false, "arrows": "to", "from": 29, "to": 113}, {"arrowStrikethrough": false, "arrows": "to", "from": 29, "to": 86}, {"arrowStrikethrough": false, "arrows": "to", "from": 29, "to": 43}, {"arrowStrikethrough": false, "arrows": "to", "from": 30, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 31, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 32, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 33, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 34, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 35, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 36, "to": 143}, {"arrowStrikethrough": false, "arrows": "to", "from": 37, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 38, "to": 118}, {"arrowStrikethrough": false, "arrows": "to", "from": 38, "to": 10}, {"arrowStrikethrough": false, "arrows": "to", "from": 40, "to": 29}, {"arrowStrikethrough": false, "arrows": "to", "from": 40, "to": 0}, {"arrowStrikethrough": false, "arrows": "to", "from": 40, "to": 56}, {"arrowStrikethrough": false, "arrows": "to", "from": 41, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 42, "to": 98}, {"arrowStrikethrough": false, "arrows": "to", "from": 43, "to": 52}, {"arrowStrikethrough": false, "arrows": "to", "from": 44, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 45, "to": 12}, {"arrowStrikethrough": false, "arrows": "to", "from": 46, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 47, "to": 36}, {"arrowStrikethrough": false, "arrows": "to", "from": 48, "to": 115}, {"arrowStrikethrough": false, "arrows": "to", "from": 48, "to": 29}, {"arrowStrikethrough": false, "arrows": "to", "from": 48, "to": 18}, {"arrowStrikethrough": false, "arrows": "to", "from": 48, "to": 87}, {"arrowStrikethrough": false, "arrows": "to", "from": 48, "to": 134}, {"arrowStrikethrough": false, "arrows": "to", "from": 48, "to": 59}, {"arrowStrikethrough": false, "arrows": "to", "from": 49, "to": 39}, {"arrowStrikethrough": false, "arrows": "to", "from": 50, "to": 110}, {"arrowStrikethrough": false, "arrows": "to", "from": 51, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 53, "to": 47}, {"arrowStrikethrough": false, "arrows": "to", "from": 54, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 56, "to": 75}, {"arrowStrikethrough": false, "arrows": "to", "from": 56, "to": 154}, {"arrowStrikethrough": false, "arrows": "to", "from": 56, "to": 111}, {"arrowStrikethrough": false, "arrows": "to", "from": 56, "to": 148}, {"arrowStrikethrough": false, "arrows": "to", "from": 56, "to": 100}, {"arrowStrikethrough": false, "arrows": "to", "from": 56, "to": 57}, {"arrowStrikethrough": false, "arrows": "to", "from": 56, "to": 136}, {"arrowStrikethrough": false, "arrows": "to", "from": 56, "to": 50}, {"arrowStrikethrough": false, "arrows": "to", "from": 56, "to": 107}, {"arrowStrikethrough": false, "arrows": "to", "from": 57, "to": 45}, {"arrowStrikethrough": false, "arrows": "to", "from": 58, "to": 47}, {"arrowStrikethrough": false, "arrows": "to", "from": 60, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 61, "to": 86}, {"arrowStrikethrough": false, "arrows": "to", "from": 61, "to": 84}, {"arrowStrikethrough": false, "arrows": "to", "from": 63, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 64, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 65, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 66, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 66, "to": 78}, {"arrowStrikethrough": false, "arrows": "to", "from": 68, "to": 73}, {"arrowStrikethrough": false, "arrows": "to", "from": 68, "to": 103}, {"arrowStrikethrough": false, "arrows": "to", "from": 68, "to": 72}, {"arrowStrikethrough": false, "arrows": "to", "from": 69, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 70, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 71, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 72, "to": 101}, {"arrowStrikethrough": false, "arrows": "to", "from": 73, "to": 49}, {"arrowStrikethrough": false, "arrows": "to", "from": 73, "to": 86}, {"arrowStrikethrough": false, "arrows": "to", "from": 73, "to": 84}, {"arrowStrikethrough": false, "arrows": "to", "from": 74, "to": 78}, {"arrowStrikethrough": false, "arrows": "to", "from": 74, "to": 79}, {"arrowStrikethrough": false, "arrows": "to", "from": 76, "to": 23}, {"arrowStrikethrough": false, "arrows": "to", "from": 77, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 78, "to": 113}, {"arrowStrikethrough": false, "arrows": "to", "from": 79, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 80, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 81, "to": 83}, {"arrowStrikethrough": false, "arrows": "to", "from": 82, "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 82, "to": 13}, {"arrowStrikethrough": false, "arrows": "to", "from": 83, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 84, "to": 22}, {"arrowStrikethrough": false, "arrows": "to", "from": 84, "to": 4}, {"arrowStrikethrough": false, "arrows": "to", "from": 84, "to": 96}, {"arrowStrikethrough": false, "arrows": "to", "from": 85, "to": 49}, {"arrowStrikethrough": false, "arrows": "to", "from": 86, "to": 96}, {"arrowStrikethrough": false, "arrows": "to", "from": 87, "to": 89}, {"arrowStrikethrough": false, "arrows": "to", "from": 87, "to": 103}, {"arrowStrikethrough": false, "arrows": "to", "from": 87, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 88, "to": 34}, {"arrowStrikethrough": false, "arrows": "to", "from": 88, "to": 91}, {"arrowStrikethrough": false, "arrows": "to", "from": 88, "to": 46}, {"arrowStrikethrough": false, "arrows": "to", "from": 90, "to": 127}, {"arrowStrikethrough": false, "arrows": "to", "from": 90, "to": 15}, {"arrowStrikethrough": false, "arrows": "to", "from": 90, "to": 40}, {"arrowStrikethrough": false, "arrows": "to", "from": 91, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 92, "to": 13}, {"arrowStrikethrough": false, "arrows": "to", "from": 92, "to": 31}, {"arrowStrikethrough": false, "arrows": "to", "from": 93, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 94, "to": 68}, {"arrowStrikethrough": false, "arrows": "to", "from": 95, "to": 5}, {"arrowStrikethrough": false, "arrows": "to", "from": 96, "to": 52}, {"arrowStrikethrough": false, "arrows": "to", "from": 97, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 98, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 99, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 100, "to": 101}, {"arrowStrikethrough": false, "arrows": "to", "from": 102, "to": 110}, {"arrowStrikethrough": false, "arrows": "to", "from": 104, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 105, "to": 109}, {"arrowStrikethrough": false, "arrows": "to", "from": 105, "to": 147}, {"arrowStrikethrough": false, "arrows": "to", "from": 106, "to": 145}, {"arrowStrikethrough": false, "arrows": "to", "from": 106, "to": 53}, {"arrowStrikethrough": false, "arrows": "to", "from": 107, "to": 67}, {"arrowStrikethrough": false, "arrows": "to", "from": 108, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 109, "to": 139}, {"arrowStrikethrough": false, "arrows": "to", "from": 110, "to": 101}, {"arrowStrikethrough": false, "arrows": "to", "from": 111, "to": 62}, {"arrowStrikethrough": false, "arrows": "to", "from": 111, "to": 110}, {"arrowStrikethrough": false, "arrows": "to", "from": 111, "to": 103}, {"arrowStrikethrough": false, "arrows": "to", "from": 112, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 116, "to": 106}, {"arrowStrikethrough": false, "arrows": "to", "from": 117, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 118, "to": 85}, {"arrowStrikethrough": false, "arrows": "to", "from": 118, "to": 90}, {"arrowStrikethrough": false, "arrows": "to", "from": 119, "to": 98}, {"arrowStrikethrough": false, "arrows": "to", "from": 119, "to": 20}, {"arrowStrikethrough": false, "arrows": "to", "from": 120, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 121, "to": 48}, {"arrowStrikethrough": false, "arrows": "to", "from": 122, "to": 155}, {"arrowStrikethrough": false, "arrows": "to", "from": 122, "to": 78}, {"arrowStrikethrough": false, "arrows": "to", "from": 122, "to": 79}, {"arrowStrikethrough": false, "arrows": "to", "from": 123, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 124, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 125, "to": 137}, {"arrowStrikethrough": false, "arrows": "to", "from": 126, "to": 125}, {"arrowStrikethrough": false, "arrows": "to", "from": 127, "to": 25}, {"arrowStrikethrough": false, "arrows": "to", "from": 130, "to": 106}, {"arrowStrikethrough": false, "arrows": "to", "from": 131, "to": 93}, {"arrowStrikethrough": false, "arrows": "to", "from": 131, "to": 125}, {"arrowStrikethrough": false, "arrows": "to", "from": 132, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 133, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 134, "to": 102}, {"arrowStrikethrough": false, "arrows": "to", "from": 134, "to": 50}, {"arrowStrikethrough": false, "arrows": "to", "from": 134, "to": 107}, {"arrowStrikethrough": false, "arrows": "to", "from": 134, "to": 103}, {"arrowStrikethrough": false, "arrows": "to", "from": 135, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 136, "to": 103}, {"arrowStrikethrough": false, "arrows": "to", "from": 137, "to": 105}, {"arrowStrikethrough": false, "arrows": "to", "from": 138, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 139, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 139, "to": 156}, {"arrowStrikethrough": false, "arrows": "to", "from": 140, "to": 128}, {"arrowStrikethrough": false, "arrows": "to", "from": 141, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 142, "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 142, "to": 120}, {"arrowStrikethrough": false, "arrows": "to", "from": 143, "to": 61}, {"arrowStrikethrough": false, "arrows": "to", "from": 143, "to": 38}, {"arrowStrikethrough": false, "arrows": "to", "from": 144, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 145, "to": 76}, {"arrowStrikethrough": false, "arrows": "to", "from": 146, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 147, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 147, "to": 114}, {"arrowStrikethrough": false, "arrows": "to", "from": 149, "to": 106}, {"arrowStrikethrough": false, "arrows": "to", "from": 150, "to": 49}, {"arrowStrikethrough": false, "arrows": "to", "from": 151, "to": 117}, {"arrowStrikethrough": false, "arrows": "to", "from": 152, "to": 121}, {"arrowStrikethrough": false, "arrows": "to", "from": 152, "to": 68}, {"arrowStrikethrough": false, "arrows": "to", "from": 153, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 155, "to": 1}, {"arrowStrikethrough": false, "arrows": "to", "from": 155, "to": 114}, {"arrowStrikethrough": false, "arrows": "to", "from": 156, "to": 114}, {"arrowStrikethrough": false, "arrows": "to", "from": 156, "to": 106}, {"arrowStrikethrough": false, "arrows": "to", "from": 156, "to": 140}, {"arrowStrikethrough": false, "arrows": "to", "from": 157, "to": 66}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+                      network.on("stabilizationProgress", function(params) {
+                          document.getElementById('loadingBar').removeAttribute("style");
+                          var maxWidth = 496;
+                          var minWidth = 20;
+                          var widthFactor = params.iterations/params.total;
+                          var width = Math.max(minWidth,maxWidth * widthFactor);
+                          document.getElementById('bar').style.width = width + 'px';
+                          document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+                      });
+                      network.once("stabilizationIterationsDone", function() {
+                          document.getElementById('text').innerHTML = '100%';
+                          document.getElementById('bar').style.width = '496px';
+                          document.getElementById('loadingBar').style.opacity = 0;
+                          // really clean the dom element
+                          setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+                      });
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

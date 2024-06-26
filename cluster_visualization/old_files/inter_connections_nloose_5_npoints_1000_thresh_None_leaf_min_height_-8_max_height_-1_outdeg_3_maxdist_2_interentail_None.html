@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1>interconnecting_1000_None_leaf_min_7_max_15_interentail_None</h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1>interconnecting_1000_None_leaf_min_7_max_15_interentail_None</h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "lemonchiffon", "font": {"color": "black"}, "id": 98, "label": 98, "shape": "dot", "title": "to provide a method for operating a floor-cleaning device"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 97, "label": 97, "shape": "dot", "title": "to provide a cleaning apparatus"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 186, "label": 186, "shape": "dot", "title": "to provide a system for storing a liquid"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 22, "label": 22, "shape": "dot", "title": "to provide a method for controlling the flow of a fluid"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 66, "label": 66, "shape": "dot", "title": "to provide a fluidic device"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 10, "label": 10, "shape": "dot", "title": "to provide a method for delivering a working fluid into a working environment"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 160, "label": 160, "shape": "dot", "title": "to provide a dispensing container"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 110, "label": 110, "shape": "dot", "title": "to provide a disposable absorbent article"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 109, "label": 109, "shape": "dot", "title": "to provide a method for sealing the ear canal"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 15, "label": 15, "shape": "dot", "title": "to provide a method for operating a pressure accumulator"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 196, "label": 196, "shape": "dot", "title": "to provide a method and system for treating human waste"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 5, "label": 5, "shape": "dot", "title": "to provide a method for adjusting camshafts"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 105, "label": 105, "shape": "dot", "title": "to provide a method for repairing an articular surface"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 164, "label": 164, "shape": "dot", "title": "to provide a method for cooling a print head"}, {"color": "lemonchiffon", "font": {"color": "black"}, "id": 178, "label": 178, "shape": "dot", "title": "to provide a method for controlling a surf wake"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 82, "label": 82, "shape": "dot", "title": "to provide a vehicle-body front structure"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 17, "label": 17, "shape": "dot", "title": "to provide a method for operating a vehicle"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 83, "label": 83, "shape": "dot", "title": "to provide a panel structure for a vehicle"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 31, "label": 31, "shape": "dot", "title": "to provide a device for adjusting the amount of force used to actuate a switch"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 34, "label": 34, "shape": "dot", "title": "to provide a device for controlling a motorized wheel"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 63, "label": 63, "shape": "dot", "title": "to provide a device for mounting accessories to a vehicle"}, {"color": "lawngreen", "font": {"color": "black"}, "id": 28, "label": 28, "shape": "dot", "title": "to provide a method for creating a mirror image of a vehicle body"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 73, "label": 73, "shape": "dot", "title": "to provide a system for predicting computed tomography data from surface data"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 193, "label": 193, "shape": "dot", "title": "to protect the security feature"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 159, "label": 159, "shape": "dot", "title": "to provide a safety device for a ladder"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 42, "label": 42, "shape": "dot", "title": "to provide a method for detecting an analyte in a sample"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 87, "label": 87, "shape": "dot", "title": "to provide a method for reducing electrostatic charges on moving material webs"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 60, "label": 60, "shape": "dot", "title": "to provide a system and method for determining an optimum geographic location using a system of systems"}, {"color": "mediumblue", "font": {"color": "black"}, "id": 174, "label": 174, "shape": "dot", "title": "to provide a method for determining the polishing endpoint"}, {"color": "thistle", "font": {"color": "black"}, "id": 7, "label": 7, "shape": "dot", "title": "to provide a method for monitoring a patient\u0027s condition"}, {"color": "thistle", "font": {"color": "black"}, "id": 21, "label": 21, "shape": "dot", "title": "to monitor a health characteristic of a user"}, {"color": "thistle", "font": {"color": "black"}, "id": 1, "label": 1, "shape": "dot", "title": "to provide a medical device"}, {"color": "thistle", "font": {"color": "black"}, "id": 0, "label": 0, "shape": "dot", "title": "to provide a method and apparatus for treating pain"}, {"color": "thistle", "font": {"color": "black"}, "id": 35, "label": 35, "shape": "dot", "title": "to provide a prosthetic device"}, {"color": "thistle", "font": {"color": "black"}, "id": 39, "label": 39, "shape": "dot", "title": "to provide a method of manufacturing a medical device"}, {"color": "thistle", "font": {"color": "black"}, "id": 4, "label": 4, "shape": "dot", "title": "to provide a method for the preparation of a pharmaceutical composition"}, {"color": "thistle", "font": {"color": "black"}, "id": 85, "label": 85, "shape": "dot", "title": "to provide a method for providing air/oxygen to a patient"}]);
+                  edges = new vis.DataSet([{"arrowStrikethrough": false, "arrows": "to", "from": 22, "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 5, "to": 82}, {"arrowStrikethrough": false, "arrows": "to", "from": 5, "to": 17}, {"arrowStrikethrough": false, "arrows": "to", "from": 5, "to": 83}, {"arrowStrikethrough": false, "arrows": "to", "from": 5, "to": 63}, {"arrowStrikethrough": false, "arrows": "to", "from": 105, "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 164, "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 82, "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 17, "to": 66}, {"arrowStrikethrough": false, "arrows": "to", "from": 34, "to": 66}, {"arrowStrikethrough": false, "arrows": "to", "from": 34, "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 63, "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 28, "to": 35}, {"arrowStrikethrough": false, "arrows": "to", "from": 85, "to": 66}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+Predicted edges which aren't true:
+1. a window cleaning method----> a substance for removing stains from an object
+2. a window cleaning method----> a method for polishing glass objects
+3. a solution for washing glass surfaces----> an apparatus for cleaning an object
+4. a method for keeping the condition of a glass----> an apparatus for cleaning an object
+5. a method for polishing glass objects----> an apparatus for maintaining a glass
+6. a method for polishing glass objects----> a solution for washing glass surfaces
+7. an apparatus for making food sweeter----> a cooking apparatus 
+8. a temperature control device----> an apparatus for lowering temperature of a room 
+9. to effectively remove dirt----> a substance for removing stains from an object
+10. an apparatus for increasing the temperature of a space----> a temperature control device
+11. a solution for efficiently cooling down inner parts of a computer----> a temperature control device
+12. a liquid-based solution for cooling a GPU----> an apparatus for cleaning an object
+13. a liquid-based solution for cooling a GPU----> an apparatus for lowering temperature of a room 
+
+
+GT edges which weren't found:
+1. a window cleaning device----> a solution for washing glass surfaces
+2. a window cleaning method----> a method for removing dust from a surface
+3. a solution for washing glass surfaces----> a method for polishing glass objects
+4. a method for polishing glass objects----> an apparatus for cleaning an object
+5. a substance for enhancing food flavor ----> a cooking apparatus 
+6. a device for cooling a room----> a temperature control device
+7. to effectively remove dirt----> an apparatus for cleaning an object
+8. to heat a room efficiently----> an apparatus for increasing the temperature of a space
+9. a solution for efficiently cooling down inner parts of a computer----> a device for cooling down high-temperature devices
+10. a liquid-based solution for cooling a GPU----> a device for cooling down high-temperature devices
+
+
+
+The number of GT edges is 16
+The number of predicted edges is 19
+recall is 0.375
+precision is 0.3157894736842105
